@@ -6,12 +6,11 @@ class AccesskeyData(
     private val api: Keys
 ) : AccesskeyDomain {
 
-    override suspend fun apiUserkey(): String {
+    override suspend fun apiUserskey(): String {
         return api.isApiKey()
     }
 
     override suspend fun apiUserLogin(): String {
         return  api.apiUserLogin()
     }
-
 }

@@ -2,8 +2,8 @@ package com.example.merybeltmobileapp.provider.preference
 
 interface PreferenceDomain {
 
-    fun saveAge(age: Int)
-    fun loadUserInfo(): UsersInfoDomain
+    suspend fun saveAge(age: Int)
+    suspend fun loadUserInfo(): UsersInfoDomain
 
     companion object {
         const val KEY_AGE = "age"

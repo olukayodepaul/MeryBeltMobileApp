@@ -1,6 +1,8 @@
 package com.example.merybeltmobileapp.di.module
 
+import com.example.merybeltmobileapp.provider.local.LocalDatabaseDTO
 import com.example.merybeltmobileapp.provider.preference.PreferenceDomain
+import com.example.merybeltmobileapp.provider.remore.RemoteData
 import com.example.merybeltmobileapp.ui.login.login_data.LoginRepositoryImpl
 import com.example.merybeltmobileapp.ui.login.login_domain.LoginRepository
 import dagger.Module
@@ -16,13 +18,15 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun isAccesKeys(
+    fun isAccessKeys(
         token: String,
         apiUserLogin: String,
-        preferens: PreferenceDomain
+        preferences: PreferenceDomain,
+        remote: RemoteData,
+        local:  LocalDatabaseDTO
     ): LoginRepository{
         return LoginRepositoryImpl(
-            token, apiUserLogin, preferens
+            token, apiUserLogin, preferences, remote, local
         )
     }
 

@@ -27,7 +27,7 @@ import com.example.merybeltmobileapp.util.UtilCompose.UtilSpaceInBetween
 object LoginComposable {
 
     @Composable
-    fun loginUi(context: Context) {
+    fun loginUi() {
         MaterialTheme{
             Column(
                 modifier = Modifier

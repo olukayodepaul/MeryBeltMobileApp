@@ -24,7 +24,6 @@ import com.example.merybeltmobileapp.util.UtilCompose.UtilSpaceInBetween
 @Composable
 fun HomeScreen() {
     MaterialTheme{
-        val shape = RoundedCornerShape(12.dp)
         Column(
             modifier = Modifier
                 .background(color = MChild)

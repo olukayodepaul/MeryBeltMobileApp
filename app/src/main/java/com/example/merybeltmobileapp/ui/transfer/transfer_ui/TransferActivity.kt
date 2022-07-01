@@ -40,7 +40,6 @@ class TransferActivity : ComponentActivity() {
             specimen.add(Specimen(plantName = "Beautiful"))
             specimen.add(Specimen(plantName = "Paul"))
             specimen.add(Specimen(plantName = "Kayode"))
-            val shape = RoundedCornerShape(12.dp)
 
             MaterialTheme {
                 Scaffold(

@@ -5,9 +5,9 @@ import com.example.merybeltmobileapp.ui.login.login_domain.LoginRepository
 import javax.inject.Named
 
 class LoginRepositoryImpl(
-    private @Named("API_KEY") val apiKey: String,
-    private @Named("API_USER_LOGIN") val apiUserLogin: String,
+    @Named("API_KEY") val apiKey: String,
+    @Named("API_USER_LOGIN") val apiUserLogin: String,
     private val preferens: PreferenceDomain
-): LoginRepository{
+): LoginRepository {
 
 }

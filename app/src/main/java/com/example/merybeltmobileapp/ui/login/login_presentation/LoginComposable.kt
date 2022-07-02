@@ -1,7 +1,6 @@
-package com.example.merybeltmobileapp.ui.login.login_ui
+package com.example.merybeltmobileapp.ui.login.login_presentation
 
 
-import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,6 +15,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.merybeltmobileapp.R
 import com.example.merybeltmobileapp.assets.Fonts.MontserratBold
 import com.example.merybeltmobileapp.theme.Menus
@@ -24,10 +24,10 @@ import com.example.merybeltmobileapp.util.SubmitButton
 import com.example.merybeltmobileapp.util.UtilCompose.UtilSpaceInBetween
 
 
-object LoginComposable {
-
     @Composable
-    fun loginUi() {
+    fun loginUi(
+
+    ) {
         MaterialTheme{
             Column(
                 modifier = Modifier
@@ -96,5 +96,3 @@ object LoginComposable {
             )
         }
     }
-
-}

@@ -9,19 +9,19 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object Keys {
+object AuthModule {
 
     @Provides
     @Singleton
-    @Named("API_KEY")
-    fun isApiKey(): String {
-       return "6a7941634d54705a4d6a346a53714461347274664d42475048"
+    @Named("TOKEN_KEY")
+    fun authToken(): String{
+        return "6a7941634d54705a4d6a346a53714461347274664d42475048"
     }
 
     @Provides
     @Singleton
     @Named("API_USER_LOGIN")
-    fun apiUserLogin() : String {
+    fun apiUser() : String {
         return "external-user"
     }
 

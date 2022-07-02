@@ -1,9 +1,12 @@
 package com.example.merybeltmobileapp.di.module
 
 
+import android.content.SharedPreferences
 import com.example.merybeltmobileapp.provider.api.api_provider_data.MerryBeltApi
-import com.example.merybeltmobileapp.provider.api.api_provider_data.MerryBeltRepositoryImpl
-import com.example.merybeltmobileapp.provider.api.api_provider_domain.MerryBeltRepository
+import com.example.merybeltmobileapp.provider.api.api_provider_data.MerryBeltApiRepositoryImpl
+import com.example.merybeltmobileapp.provider.api.api_provider_domain.MerryBeltApiRepository
+import com.example.merybeltmobileapp.provider.preference.pref_provider_data.MerryBeltPrefRepositoryImpl
+import com.example.merybeltmobileapp.provider.preference.pref_provider_domain.MerryBeltPrefRepository
 import com.example.merybeltmobileapp.provider.room.room_provider_domain.MerryBeltRoomDao
 import dagger.Module
 import dagger.Provides
@@ -19,16 +22,26 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideMerryBeltPrefRepository(
+        sharedPref: SharedPreferences
+    ): MerryBeltPrefRepository {
+        return MerryBeltPrefRepositoryImpl(
+            sharedPref
+        )
+    }
+
+    @Provides
+    @Singleton
     fun provideMerrybeltRepository(
         merryBeltApi: MerryBeltApi,
         @Named("TOKEN_KEY") authToken: String,
         @Named("API_USER_LOGIN") apiUser: String,
-        merryBeltRoomDao: MerryBeltRoomDao
-    ): MerryBeltRepository{
-        return MerryBeltRepositoryImpl(
-            merryBeltApi, authToken, apiUser, merryBeltRoomDao
+        merryBeltRoomDao: MerryBeltRoomDao,
+        merryPref: MerryBeltPrefRepository
+    ): MerryBeltApiRepository{
+        return MerryBeltApiRepositoryImpl(
+            merryBeltApi, authToken, apiUser, merryBeltRoomDao, merryPref
         )
     }
-
 
 }

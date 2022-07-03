@@ -1,8 +1,5 @@
-package com.example.merybeltmobileapp.ui.billpayment.bill_ui
+package com.example.merybeltmobileapp.ui.billpayment.bill_presentation
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,87 +27,82 @@ import com.example.merybeltmobileapp.util.UtilCompose.SpecimenSpinners
 import com.example.merybeltmobileapp.util.UtilCompose.UtilSpaceInBetween
 
 
-class BillPaymentActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
 
+@Composable
+fun MainSreen(){
+    MaterialTheme {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(
+                            text = "Data, Airtime and Bill Payment",
+                            style = TextStyle(
+                                fontFamily = MontserratBold,
+                                fontSize = 15.sp,
 
-            MaterialTheme {
-                Scaffold(
-                    topBar = {
-                        TopAppBar(
-                            title = {
-                                Text(
-                                    text = "Data, Airtime and Bill Payment",
-                                    style = TextStyle(
-                                        fontFamily = MontserratBold,
-                                        fontSize = 15.sp,
-
-                                    )
                                 )
-                            },
-                            navigationIcon = {
-                                IconButton(onClick = {}) {
-                                    Icon(Icons.Filled.ArrowBack,"backIcon", tint = White)
-                                }
-                            },
-                            backgroundColor = MChild,
-                            contentColor = Color.White,
-                            elevation = 12.dp
                         )
-                    }, content = {
-                        Column(Modifier
-                            .fillMaxSize()
-                        ) {
-
-                            Column(
-                                Modifier
-                                    .background(MaterialBg)
-                                    .padding(20.dp)
-                            ) {
-
-
-
-                                Text(
-                                    text = "Select a category",
-                                    style = TextStyle(
-                                        fontFamily = RobotoBold,
-                                        fontSize = 18.sp
-                                    )
-                                )
-
-                                UtilSpaceInBetween(4)
-
-                                Text(
-                                    text = "Your airtime and data top up, cable tv and internet payment ",
-                                    style = TextStyle(
-                                        fontFamily = Montserrat,
-                                        fontSize = 13.sp
-                                    )
-                                )
-
-                                val specimen = ArrayList<Specimen>()
-                                specimen.add(Specimen(plantName = "Airtime"))
-                                specimen.add(Specimen(plantName = "Data"))
-                                specimen.add(Specimen(plantName = "Cable Tv"))
-                                specimen.add(Specimen(plantName = "Internet"))
-
-                                SpecimenSpinners(specimen, "", 5)
-
-                                UtilSpaceInBetween(5)
-                            }
-
-                           //here
-                            internetService()
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = {}) {
+                            Icon(Icons.Filled.ArrowBack,"backIcon", tint = White)
                         }
-
-                    }
+                    },
+                    backgroundColor = MChild,
+                    contentColor = Color.White,
+                    elevation = 12.dp
                 )
+            }, content = {
+                Column(Modifier
+                    .fillMaxSize()
+                ) {
+
+                    Column(
+                        Modifier
+                            .background(MaterialBg)
+                            .padding(20.dp)
+                    ) {
+
+
+
+                        Text(
+                            text = "Select a category",
+                            style = TextStyle(
+                                fontFamily = RobotoBold,
+                                fontSize = 18.sp
+                            )
+                        )
+
+                        UtilSpaceInBetween(4)
+
+                        Text(
+                            text = "Your airtime and data top up, cable tv and internet payment ",
+                            style = TextStyle(
+                                fontFamily = Montserrat,
+                                fontSize = 13.sp
+                            )
+                        )
+
+                        val specimen = ArrayList<Specimen>()
+                        specimen.add(Specimen(plantName = "Airtime"))
+                        specimen.add(Specimen(plantName = "Data"))
+                        specimen.add(Specimen(plantName = "Cable Tv"))
+                        specimen.add(Specimen(plantName = "Internet"))
+
+                        SpecimenSpinners(specimen, "", 5)
+
+                        UtilSpaceInBetween(5)
+                    }
+
+                    //here
+                }
+
             }
-        }
+        )
     }
 }
+
 
 
 @Composable
@@ -256,4 +248,3 @@ fun airtimeTopUp(){
 
     }
 }
-

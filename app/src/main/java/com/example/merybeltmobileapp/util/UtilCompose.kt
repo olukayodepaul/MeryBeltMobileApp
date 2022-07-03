@@ -1,5 +1,6 @@
 package com.example.merybeltmobileapp.util
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,10 +20,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.merybeltmobileapp.R
 import com.example.merybeltmobileapp.assets.Fonts
 import com.example.merybeltmobileapp.theme.*
 import com.example.merybeltmobileapp.ui.dto.Specimen
+import com.example.merybeltmobileapp.ui.screen.navigation.Screen
 
 
 object UtilCompose {
@@ -168,9 +171,14 @@ fun isTransferLeadingIcon(switchImage: Int):Int {
 }
 
 @Composable
-fun SubmitButton(isContent:String) {
+fun SubmitButton(
+    isContent:String?=null
+) {
     Button(
-        onClick = {},
+        onClick = {
+                  Log.d("EPOKHAI","cLICKING  ")
+//                  navController!!.navigate(route = Screen.HomeScreen.route)
+        },
         modifier = Modifier
             .fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
@@ -179,7 +187,7 @@ fun SubmitButton(isContent:String) {
 
         ) {
         androidx.compose.material.Text(
-            text = isContent,
+            text = isContent!!,
             style = TextStyle(
                 color = White,
                 fontSize = 20.sp,

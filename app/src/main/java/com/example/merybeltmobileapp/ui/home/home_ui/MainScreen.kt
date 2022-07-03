@@ -13,8 +13,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.merybeltmobileapp.theme.Purple500
 import com.example.merybeltmobileapp.theme.White
 
+//MainScreen()
+
 @Composable
-fun MainScreen() {
+fun HomeMainScreen() {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }

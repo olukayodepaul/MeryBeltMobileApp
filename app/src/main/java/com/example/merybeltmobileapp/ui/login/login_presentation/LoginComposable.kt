@@ -2,15 +2,17 @@ package com.example.merybeltmobileapp.ui.login.login_presentation
 
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
@@ -24,17 +26,25 @@ import com.example.merybeltmobileapp.assets.Fonts.MontserratBold
 import com.example.merybeltmobileapp.theme.MChild
 import com.example.merybeltmobileapp.theme.Menus
 import com.example.merybeltmobileapp.theme.White
-import com.example.merybeltmobileapp.ui.screen.navigation.Screen
-import com.example.merybeltmobileapp.util.SubmitButton
+import com.example.merybeltmobileapp.ui.login.login_data.login_dto.LoginCredential
 import com.example.merybeltmobileapp.util.UtilCompose.UtilSpaceInBetween
+import com.example.merybeltmobileapp.util.currentDate
+import com.example.merybeltmobileapp.util.getHash
+import java.text.SimpleDateFormat
+import java.util.*
 
 
-    @Composable
-    fun loginUi(
-        navController: NavController,
-        viewModel: LoginViewModel = hiltViewModel(),
-    ) {
+@Composable
+    fun loginUi() {
         MaterialTheme{
+
+            var navController: NavController
+            var viewModel: LoginViewModel = hiltViewModel()
+
+            val userName  = viewModel.userName.value
+            val userPassword  = viewModel.userPassword.value
+            val context = LocalContext.current
+
             Column(
                 modifier = Modifier
                     .padding(0.dp)
@@ -62,16 +72,44 @@ import com.example.merybeltmobileapp.util.UtilCompose.UtilSpaceInBetween
                         contentDescription = "Logo",
                     )
                     UtilSpaceInBetween(100)
-                    InputForm("Username")
-                    InputForm("Password")
 
-                    Button(
-                        onClick = {
-                            Log.d("EPOKHAI","cLICKING  ")
-                            navController!!.navigate(route = Screen.HomeScreen.route)
+                    TextField(
+                        label = { Text(text = "Username")},
+                        value = userName,
+                        onValueChange = {
+                            viewModel.onChangeUserName(it)
                         },
                         modifier = Modifier
-                            .fillMaxWidth(),
+                            .fillMaxWidth()
+                            .padding(start = 30.dp, end = 30.dp, top = 10.dp)
+                    )
+
+                    TextField(
+                        label = { Text(text = "Password")},
+                        value = userPassword,
+                        onValueChange = {
+                            viewModel.onChangeUserPassword(it)
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 30.dp, end = 30.dp, top = 10.dp)
+                    )
+
+                    Button(
+
+                        onClick = {
+                            if(userName.isEmpty() ||  userPassword.isEmpty()) {
+                                Toast.makeText(context, "Invalid Login", Toast.LENGTH_SHORT).show()
+                            }else{
+                                val us = "external_user"
+                                val pas = "[2,40,-18,-22,-8,37,-96,-61,-54,-78,18,-107,11,-110,-34,107]"
+                                val loginCredential = LoginCredential(us,pas)
+                                viewModel.onEvent(TrackerOverviewEvent.OnClick(loginCredential))
+                            }
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 30.dp, end = 30.dp, top = 10.dp),
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = MChild
                         ),
@@ -92,21 +130,6 @@ import com.example.merybeltmobileapp.util.UtilCompose.UtilSpaceInBetween
             }
         }
     }
-
-    @Composable
-    fun InputForm(
-        hint:String
-    ) {
-        TextField(
-            label = { Text(text = "$hint")},
-            value = "",
-            onValueChange = {},
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 30.dp, end = 30.dp, top = 10.dp)
-        )
-    }
-
 
     @Composable
     fun copyWrite(copyWriteYear:String){

@@ -7,17 +7,23 @@ class MerryBeltPrefRepositoryImpl(
     private val sharedPref: SharedPreferences
 ): MerryBeltPrefRepository {
 
-    override suspend fun saveAge(age: Int) {
+    override suspend fun saveShopName(shopname: String) {
         sharedPref.edit()
-            .putInt(MerryBeltPrefRepository.KEY_AGE, age)
+            .putString(MerryBeltPrefRepository.KEY_SHOP, shopname)
             .apply()
     }
 
-    override suspend fun loadUserInfo(): UsersInfoDomain {
-        val age = sharedPref.getInt(MerryBeltPrefRepository.KEY_AGE, -1)
-        return UsersInfoDomain(
-            age = age,
-        )
+    override suspend fun saveShopAddress(shopaddress: String) {
+        sharedPref.edit()
+            .putString(MerryBeltPrefRepository.KEY_ADDRESS, shopaddress)
+            .apply()
     }
+
+//    override suspend fun loadUserInfo(): UsersInfoDomain {
+//        val age = sharedPref.getInt(MerryBeltPrefRepository.KEY_AGE, -1)
+//        return UsersInfoDomain(
+//            age = age,
+//        )
+//    }
 
 }

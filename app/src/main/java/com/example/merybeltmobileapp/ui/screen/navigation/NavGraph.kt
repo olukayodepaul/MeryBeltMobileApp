@@ -20,7 +20,7 @@ fun setupNavGraph(
         composable(
             route = Screen.MainScreen.route
         ){
-            loginUi(navController = navController)
+            loginUi()
         }
 
         composable(

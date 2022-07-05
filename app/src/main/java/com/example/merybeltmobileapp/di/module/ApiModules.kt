@@ -1,6 +1,9 @@
 package com.example.merybeltmobileapp.di.module
 
+import com.example.merybeltmobileapp.BuildConfig
 import com.example.merybeltmobileapp.provider.api.api_provider_data.MerryBeltApi
+import com.example.merybeltmobileapp.util.SupportInterceptor
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -8,36 +11,41 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModules {
 
-        @Provides
-        @Singleton
-        fun provideOkHttpClient(): OkHttpClient {
-            return OkHttpClient.Builder()
-                .addInterceptor(
-                    HttpLoggingInterceptor().apply {
-                        level = HttpLoggingInterceptor.Level.BODY
-                    }
-                )
-                .build()
+    @Singleton
+    @Provides
+    fun provideApi(): MerryBeltApi {
+
+        val supportInterceptor = SupportInterceptor()
+
+        val okHttpClientBuilder = OkHttpClient.Builder()
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .followRedirects(true)
+            .followSslRedirects(true)
+            .addInterceptor(supportInterceptor)
+
+        if (BuildConfig.DEBUG) {
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY
+            okHttpClientBuilder.addInterceptor(logging)
         }
 
-        @Provides
-        @Singleton
-        fun provideApi(client: OkHttpClient): MerryBeltApi {
-            return Retrofit.Builder()
-                .baseUrl("https://github.com/philipplackner/")
-                .addConverterFactory(MoshiConverterFactory.create())
-                .client(client)
-                .build()
-                .create(MerryBeltApi::class.java)
-        }
-     
+        return Retrofit.Builder()
+            .baseUrl("http://mobiletraderapi.com:9100/")
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .client(okHttpClientBuilder.build())
+            .build()
+            .create(MerryBeltApi::class.java)
+    }
+
 }
 
 

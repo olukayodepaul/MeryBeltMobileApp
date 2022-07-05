@@ -4,11 +4,13 @@ import com.example.merybeltmobileapp.provider.preference.pref_provider_data.User
 
 interface MerryBeltPrefRepository {
 
-    suspend fun saveAge(age: Int)
-    suspend fun loadUserInfo(): UsersInfoDomain
+    suspend fun saveShopName(shopname: String)
+    suspend fun saveShopAddress(shopaddress: String)
+    //suspend fun loadUserInfo(): UsersInfoDomain
 
     companion object {
-        const val KEY_AGE = "age"
+        const val KEY_SHOP = "shopname"
+        const val KEY_ADDRESS = "shopaddress"
     }
 }
 

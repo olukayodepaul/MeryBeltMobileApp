@@ -85,11 +85,9 @@ fun AuthenticationForm(
                 modifier = Modifier.padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                EmailInput(
-                    modifier = Modifier.fillMaxWidth(),
-                    email = email ?: "",
-                    onEmailChanged = onEmailChanged
-                )
+//                EmailInput(
+//
+//                )
             }
         }
     }
@@ -117,20 +115,22 @@ fun EmailInput(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     painter:Int=0,
-
-    onValueChange:(String)->Unit,
+    email: String,
+    onEmailChanged: (email: String) -> Unit
 ) {
 
     val bColor = Borderline
     OutlinedTextField(
         modifier = Modifier.fillMaxWidth(),
-        value = value,
-        onValueChange = onValueChange,
+        value = email,
+        onValueChange = { email ->
+            onEmailChanged(email)
+        },
         keyboardOptions = keyboardOptions,
         visualTransformation = visualTransformation,
         label = {
             Text(
-                text = label,
+                text = email,
                 style = TextStyle(
                     fontFamily = Fonts.Montserrat,
                     color = Blues,
@@ -146,7 +146,7 @@ fun EmailInput(
             }) {
                 Icon(
                     painter = painterResource(id = isTransferLeadingIcon(painter)),
-                    contentDescription = label
+                    contentDescription = ""
                 )
             }
         },

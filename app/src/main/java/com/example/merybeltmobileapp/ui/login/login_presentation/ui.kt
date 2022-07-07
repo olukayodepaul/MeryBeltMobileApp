@@ -1,7 +1,6 @@
 package com.example.merybeltmobileapp.ui.login.login_presentation
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -77,6 +76,7 @@ fun Authentication() {
                     authenticationState = viewModel.uiState.collectAsState().value,
                     handleEvent = viewModel::handleEvent
                 )
+
 
             }
         }
@@ -289,11 +289,12 @@ fun AuthenticationButton(
 
     Button(
         onClick = {
-            if(authenticationState.email.isEmpty()){
-                Toast.makeText(localContext, "Wrong Longin Credential",Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(localContext, "Wrong Longin ${authenticationState.email}",Toast.LENGTH_SHORT).show()
-            }
+            handleEvent(
+                AuthenticationEvent.CheckRemote(
+                    emailAddress=authenticationState.email,
+                    password= authenticationState.password
+                )
+            )
         }
     ) {
 

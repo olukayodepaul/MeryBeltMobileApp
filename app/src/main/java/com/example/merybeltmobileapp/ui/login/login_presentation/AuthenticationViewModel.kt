@@ -25,7 +25,6 @@ class AuthenticationViewModel @Inject constructor(
     private val app: Application,
 ): ViewModel() {
 
-
     var uiState = MutableStateFlow(AuthenticationState())
 
     //this is event to change the screen state
@@ -69,6 +68,10 @@ class AuthenticationViewModel @Inject constructor(
         )
     }
 
+    fun remoteEvent(email: String, password: String) {
+       // updateEmail("bcjsjsanjnsdjnsnajn")
+    }
+
     private fun dismissError() {
         uiState.value = uiState.value.copy(
             error = null
@@ -109,9 +112,10 @@ class AuthenticationViewModel @Inject constructor(
             is AuthenticationEvent.ErrorDismissed -> {
                 dismissError()
             }
+            is AuthenticationEvent.CheckRemote->{
+                remoteEvent(authenticationEvent.emailAddress, authenticationEvent.password)
+            }
         }
     }
-
-
 
 }

@@ -52,4 +52,7 @@ data class Balance(
     val instantBetSettlementBalance: Float
 )
 
-
+data class LoginEvents(
+    val userName: String,
+    val passowrd: String,
+)

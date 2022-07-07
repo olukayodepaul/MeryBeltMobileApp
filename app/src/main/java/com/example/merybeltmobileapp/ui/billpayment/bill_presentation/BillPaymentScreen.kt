@@ -17,11 +17,11 @@ import androidx.compose.ui.unit.sp
 import com.example.merybeltmobileapp.assets.Fonts.Montserrat
 import com.example.merybeltmobileapp.assets.Fonts.MontserratBold
 import com.example.merybeltmobileapp.assets.Fonts.RobotoBold
+import com.example.merybeltmobileapp.theme.Buttons
 import com.example.merybeltmobileapp.theme.MChild
 import com.example.merybeltmobileapp.theme.MaterialBg
 import com.example.merybeltmobileapp.theme.White
 import com.example.merybeltmobileapp.ui.dto.Specimen
-import com.example.merybeltmobileapp.util.SubmitButton
 import com.example.merybeltmobileapp.util.UtilCompose.InputWidget
 import com.example.merybeltmobileapp.util.UtilCompose.SpecimenSpinners
 import com.example.merybeltmobileapp.util.UtilCompose.UtilSpaceInBetween
@@ -137,7 +137,7 @@ fun loadData(){
         SpecimenSpinners(specimen, "Select Bundle", 7)
         InputWidget("Phone Number", 8)
         UtilSpaceInBetween(10)
-        SubmitButton("Next")
+        //Buttons("Next")
 
     }
 }
@@ -173,7 +173,7 @@ fun cableTv(){
         SpecimenSpinners(specimen, "Select Bundle", 7)
         InputWidget("Smart Card Provider", 8)
         UtilSpaceInBetween(10)
-        SubmitButton("Next")
+        //Buttons("Next")
 
     }
 }
@@ -210,7 +210,7 @@ fun internetService(){
         SpecimenSpinners(specimen, "Select Bundle", 7)
         InputWidget("Account Number", 8)
         UtilSpaceInBetween(10)
-        SubmitButton("Next")
+        //Buttons("Next")
 
     }
 }
@@ -244,7 +244,7 @@ fun airtimeTopUp(){
         InputWidget("Phone Number", 8)
         InputWidget("Amount", 9)
         UtilSpaceInBetween(10)
-        SubmitButton("Next")
+        //Buttons("Next")
 
     }
 }

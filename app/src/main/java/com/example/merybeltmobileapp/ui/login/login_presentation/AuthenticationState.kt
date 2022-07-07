@@ -1,0 +1,18 @@
+package com.example.merybeltmobileapp.ui.login.login_presentation
+
+import java.util.*
+
+data class AuthenticationState(
+    val authenticationMode: AuthenticationMode = AuthenticationMode.SIGN_IN,
+    val email: String? = null,
+    val password: String? = null,
+    val passwordRequirements: List<Arrays> = emptyList(),
+    val isLoading: Boolean = false,
+    val error: String? = null
+){
+    fun isFormValid(): Boolean {
+        return password?.isNotEmpty() == true &&
+                email?.isNotEmpty() == true &&
+                authenticationMode == AuthenticationMode.SIGN_IN
+    }
+}

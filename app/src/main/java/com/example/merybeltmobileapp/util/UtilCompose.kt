@@ -170,38 +170,9 @@ fun isTransferLeadingIcon(switchImage: Int):Int {
     return drawables[switchImage]
 }
 
-@Composable
-fun SubmitButton(
-    isContent:String?=null
-) {
-    Button(
-        onClick = {
-                  Log.d("EPOKHAI","cLICKING  ")
-//                  navController!!.navigate(route = Screen.HomeScreen.route)
-        },
-        modifier = Modifier
-            .fillMaxWidth(),
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = MChild
-        ),
-
-        ) {
-        androidx.compose.material.Text(
-            text = isContent!!,
-            style = TextStyle(
-                color = White,
-                fontSize = 20.sp,
-                fontFamily = Fonts.MontserratBold
-            ),
-        )
-    }
-}
 
 
-@Composable
-fun ScaffoldWithTopBar() {
 
-}
 
 
 

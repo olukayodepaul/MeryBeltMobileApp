@@ -101,7 +101,7 @@ class AuthenticationViewModel @Inject constructor(
                 updateEmail(authenticationEvent.emailAddress)
             }
             is AuthenticationEvent.PasswordChanged->{
-                updateEmail(authenticationEvent.password)
+                updatePassword(authenticationEvent.password)
             }
             is AuthenticationEvent.Authenticate->{
                 authenticate()

@@ -12,6 +12,7 @@ import com.example.merybeltmobileapp.theme.White
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
 import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
+import com.example.merybeltmobileapp.ui.login.login_data.login_dto.dialogMapper as dialogMapper1
 
 
 @Composable
@@ -64,7 +65,6 @@ fun ScreenThem(
                 AuthenticationButtons(
                     title = "Login",
                     handleEvent = handleEvent,
-                    authenticationState = authenticationState
                 )
                 Spacer(modifier = Modifier.padding(bottom = 10.dp))
                 CircularPropagations(
@@ -72,11 +72,10 @@ fun ScreenThem(
                 )
                 Spacer(modifier = Modifier.padding(bottom = 10.dp))
                 AuthenticationErrorDialogs(
-                    status = authenticationState.isDialog,
-                    message = "Close",
-                    title = ""
+                    isDialogShow = authenticationState.isDialogShow,
+                    isDialogMessage = authenticationState.isDialogMessage,
+                    isDialogTitle = authenticationState.isDialogTitle
                 )
-
                 copyWrite(copyWriteYear="2022")
             }
         }

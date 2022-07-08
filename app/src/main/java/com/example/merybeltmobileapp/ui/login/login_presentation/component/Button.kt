@@ -21,12 +21,13 @@ import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
 @Composable
 fun AuthenticationButtons(
     title:String = "",
-    handleEvent :(AuthenticationEvent)->Unit,
-    authenticationState : AuthenticationState
+    handleEvent :(AuthenticationEvent)->Unit
 ) {
     Button(
         onClick = {
-
+            handleEvent(
+                AuthenticationEvent.apiNetwork
+            )
         },
         //enabled = false,
         modifier = Modifier

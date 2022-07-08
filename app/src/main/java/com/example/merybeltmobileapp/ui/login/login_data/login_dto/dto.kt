@@ -56,3 +56,10 @@ data class LoginEvents(
     val userName: String,
     val passowrd: String,
 )
+
+data class dialogMapper(
+    val isDialogShow: Boolean,
+    val isDialogMessage: String,
+    val isDialogTitle: String
+)
+

@@ -1,6 +1,7 @@
 package com.example.merybeltmobileapp.ui.login.login_presentation
 
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.merybeltmobileapp.Application
@@ -38,15 +39,27 @@ class AuthenticationViewModel @Inject constructor(
         )
     }
 
-    private fun showUserDialogEvent(dialog: Boolean) {
+    private fun showUserDialogEvent(isDialogTitle: String, isDialogMessage: String, isDialogShow: Boolean) {
         uiState.value = uiState.value.copy(
-            isDialog = dialog
+            isDialogMessage = isDialogMessage,
+            isDialogShow = isDialogShow
         )
     }
 
     private fun apiNetworkCall() {
         viewModelScope.launch {
 
+            val userName = uiState.value.username
+            val password = uiState.value.password
+
+            if(userName.isEmpty() && password.isEmpty()) {
+                uiState.value = uiState.value.copy(
+                    isDialogMessage = "Please enter correct username and password!",
+                    isDialogShow = true
+                )
+            }else{
+                //Make a network Call from here
+            }
         }
     }
 
@@ -62,7 +75,7 @@ class AuthenticationViewModel @Inject constructor(
                 updateProgressBarEvent(authenticationEvent.loadingProgressBar)
             }
             is AuthenticationEvent.ShowUserDialog->{
-                showUserDialogEvent(authenticationEvent.loadDialog)
+                showUserDialogEvent(authenticationEvent.isDialogTitle, authenticationEvent.isDialogMessage, authenticationEvent.isDialogShow)
             }
             is AuthenticationEvent.apiNetwork->{
                 apiNetworkCall()

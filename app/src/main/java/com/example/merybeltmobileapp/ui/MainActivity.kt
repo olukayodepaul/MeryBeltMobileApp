@@ -13,6 +13,7 @@ import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
 import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
 import com.example.merybeltmobileapp.ui.login.login_presentation.component.ScreenThem
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.asStateFlow
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

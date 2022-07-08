@@ -59,6 +59,7 @@ class AuthenticationViewModel @Inject constructor(
                 )
             }else{
                 //Make a network Call from here
+
             }
         }
     }

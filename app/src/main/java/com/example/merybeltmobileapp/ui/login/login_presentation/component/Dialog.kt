@@ -5,31 +5,38 @@ import androidx.compose.material.AlertDialog
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
-import com.example.merybeltmobileapp.ui.login.login_data.login_dto.dialogMapper
-
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.sp
+import com.example.merybeltmobileapp.R
 
 @Composable
 fun AuthenticationErrorDialogs (
     isDialogShow : Boolean,
     isDialogMessage: String,
     isDialogTitle: String = "",
+    onDismissRequest:()->Unit
+
 ) {
-    if(isDialogShow)
-    {
+    if(isDialogShow) {
         AlertDialog(
             onDismissRequest = {
-                isDialogShow
+                onDismissRequest()
             },
             confirmButton = {
                 TextButton(onClick = {
-                    isDialogShow
+                    onDismissRequest()
                 })
-                { Text(text = "Close") }
+                {
+                    Text(text = "Close")
+                }
             },
-            title = { Text(text = isDialogTitle) },
-            text = { Text(text = isDialogMessage) }
+            title = {
+                Text(text = isDialogTitle)
+            },
+            text = {
+                Text(text = isDialogMessage)
+            }
         )
-
     }
 }
 

@@ -29,7 +29,6 @@ fun AuthenticationButtons(
                 AuthenticationEvent.apiNetwork
             )
         },
-        //enabled = false,
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 10.dp, end = 10.dp),

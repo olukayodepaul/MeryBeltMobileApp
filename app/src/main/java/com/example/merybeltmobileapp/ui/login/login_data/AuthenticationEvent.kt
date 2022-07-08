@@ -12,5 +12,4 @@ sealed class AuthenticationEvent {
         val isDialogShow: Boolean
     ): AuthenticationEvent()
     object apiNetwork : AuthenticationEvent()
-
 }

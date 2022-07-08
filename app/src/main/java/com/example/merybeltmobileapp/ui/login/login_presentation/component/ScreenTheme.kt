@@ -74,23 +74,19 @@ fun ScreenThem(
                 AuthenticationErrorDialogs(
                     isDialogShow = authenticationState.isDialogShow,
                     isDialogMessage = authenticationState.isDialogMessage,
-                    isDialogTitle = authenticationState.isDialogTitle
+                    isDialogTitle = authenticationState.isDialogTitle,
+                    onDismissRequest = {
+                        handleEvent(
+                            AuthenticationEvent.ShowUserDialog(
+                                isDialogTitle = "",
+                                isDialogMessage = "",
+                                isDialogShow = false
+                            )
+                        )
+                    }
                 )
                 copyWrite(copyWriteYear="2022")
             }
         }
     }
 }
-//authenticationState: AuthenticationState,
-//    handleEvent: (AuthenticationEvent) -> Unit,
-//    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-//    label:String = "",
-//    modifier: Modifier = Modifier,
-//    visualTransformation: VisualTransformation = VisualTransformation.None,
-
-
-// viewModel = viewModel,
-//                localContext = localContext,
-//                modifier = modifier,
-//                authenticationState = authenticationState,
-//                handleEvent = handleEvent

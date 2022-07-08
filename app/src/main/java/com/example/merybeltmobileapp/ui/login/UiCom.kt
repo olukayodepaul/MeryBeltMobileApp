@@ -64,6 +64,7 @@
 //                verticalArrangement = Arrangement.Center,
 //                horizontalAlignment = Alignment.CenterHorizontally,
 //                modifier = Modifier
+//                modifier = Modifier
 //                    .fillMaxWidth()
 //                    .padding(top = 60.dp)
 //            ) {

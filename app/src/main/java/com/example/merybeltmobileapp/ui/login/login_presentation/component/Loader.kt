@@ -12,18 +12,18 @@ import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
 fun CircularPropagations(
     status: Boolean
 ){
-
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .padding(50.dp),
-        horizontalArrangement = Arrangement.Center
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier
-                .width(30.dp)
-                .height(30.dp),
+    if(status){
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(50.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .width(30.dp)
+                    .height(30.dp),
             )
+        }
     }
-
 }

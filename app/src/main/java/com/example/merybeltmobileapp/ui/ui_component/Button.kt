@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.merybeltmobileapp.assets.Fonts
 import com.example.merybeltmobileapp.theme.MChild
+import com.example.merybeltmobileapp.theme.White
 
 
 @Composable
@@ -27,7 +28,7 @@ fun SubmitButton(
 ){
     Button(
         onClick = {
-            onClick()
+
         },
         modifier
             .fillMaxWidth()
@@ -40,7 +41,7 @@ fun SubmitButton(
         Text(
             text =text,
             style = TextStyle(
-                color = Color(color),
+                color = White,
                 fontSize = 20.sp,
                 fontFamily = Fonts.MontserratBold
             ),

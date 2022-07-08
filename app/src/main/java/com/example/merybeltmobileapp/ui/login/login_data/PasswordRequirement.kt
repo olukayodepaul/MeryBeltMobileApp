@@ -1,4 +1,4 @@
-package com.example.merybeltmobileapp.ui.login.login_presentation
+package com.example.merybeltmobileapp.ui.login.login_data
 
 import androidx.annotation.StringRes
 import com.example.merybeltmobileapp.R

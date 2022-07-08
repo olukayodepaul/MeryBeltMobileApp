@@ -1,28 +1,31 @@
 package com.example.merybeltmobileapp.ui.login.login_presentation
 
 
-import android.util.Log
-import androidx.compose.runtime.mutableStateOf
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.merybeltmobileapp.Application
 import com.example.merybeltmobileapp.provider.api.api_provider_domain.MerryBeltApiRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
+import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
+import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationMode
+import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
+import com.example.merybeltmobileapp.ui.login.login_data.PasswordRequirements
+import com.example.merybeltmobileapp.ui.login.login_data.login_dto.LoginCredential
+import com.example.merybeltmobileapp.util.getHash
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class AuthenticationViewModel @Inject constructor(
     private val repo: MerryBeltApiRepository,
-    private val app: Application,
+    private val appContext: Application,
 ): ViewModel() {
 
     var uiState = MutableStateFlow(AuthenticationState())
@@ -68,8 +71,32 @@ class AuthenticationViewModel @Inject constructor(
         )
     }
 
-    fun remoteEvent(email: String, password: String) {
+    private fun remoteEvent(email: String, password: String) {
        // updateEmail("bcjsjsanjnsdjnsnajn")
+        viewModelScope.launch {
+            try{
+                val requestTime = SimpleDateFormat("yyyyMMddHHmmssZ").format(Date())
+                val apiHashKey = getHash("${repo.apiUser()}${repo.token()}$requestTime")
+                val data = LoginCredential(login = email,loginPasswordMD5 = password)
+
+                val loginApi = repo.login(
+                    requestTime = requestTime,
+                    apiHashKey = apiHashKey,
+                    apiUserId = 8,
+                    data = data
+                )
+
+                if(loginApi.code()==200 || loginApi.isSuccessful){
+                    Toast.makeText(appContext, "${loginApi.body()}", Toast.LENGTH_LONG).show()
+                }else{
+                    Toast.makeText(appContext, "${loginApi.body()}", Toast.LENGTH_LONG).show()
+                }
+
+            }catch (e: Throwable) {
+                Toast.makeText(appContext, "${e.message}", Toast.LENGTH_LONG).show()
+            }
+        }
+
     }
 
     private fun dismissError() {

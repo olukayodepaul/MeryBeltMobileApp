@@ -5,7 +5,6 @@ import com.example.merybeltmobileapp.ui.login.login_data.login_dto.LoginResponse
 import retrofit2.Response
 import retrofit2.http.*
 
-
 interface MerryBeltApi {
     @POST("/merry/auth")
     suspend fun login(

@@ -1,13 +1,9 @@
 package com.example.merybeltmobileapp.ui.login.login_data
 
 sealed class AuthenticationEvent {
-    object ToggleAuthenticationMode: AuthenticationEvent()
-    class EmailChanged(val emailAddress: String): AuthenticationEvent()
-    class PasswordChanged(val password: String): AuthenticationEvent()
-    class CheckRemote(
-        val emailAddress: String,
-        val password: String,
-        ): AuthenticationEvent()
-    object Authenticate: AuthenticationEvent()
-    object ErrorDismissed: AuthenticationEvent()
+    class ChangeUserName(val username: String): AuthenticationEvent()
+    class ChangeUserPassword(val passwords: String): AuthenticationEvent()
+    class ChangeUserProgressBar(val loadingProgressBar: Boolean): AuthenticationEvent()
+    class ShowUserDialog(val loadDialog: Boolean): AuthenticationEvent()
+    object apiNetwork : AuthenticationEvent()
 }

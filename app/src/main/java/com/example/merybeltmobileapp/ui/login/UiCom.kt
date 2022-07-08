@@ -1,131 +1,54 @@
-package com.example.merybeltmobileapp.ui.transfer.transfer_ui
-
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.merybeltmobileapp.assets.Fonts
-import com.example.merybeltmobileapp.theme.Buttons
-import com.example.merybeltmobileapp.theme.MChild
-import com.example.merybeltmobileapp.theme.White
-import com.example.merybeltmobileapp.ui.dto.Specimen
-import com.example.merybeltmobileapp.util.UtilCompose
-
-
-@Composable
-fun transferUI(){
-
-//    var selectedSpecimen: Specimen? = null
+//package com.example.merybeltmobileapp.ui.login
 //
-//    val specimen = ArrayList<Specimen>()
-//    specimen.add(Specimen(plantName = "Beautiful"))
-//    specimen.add(Specimen(plantName = "Paul"))
-//    specimen.add(Specimen(plantName = "Kayode"))
 //
-//    MaterialTheme {
-//        Scaffold(
-//            topBar = {
-//                TopAppBar(
-//                    title = {
-//                        Text(
-//                            text = "Transfer Fund",
-//                            style = TextStyle(
-//                                fontFamily = Fonts.Montserrat,
-//                                fontSize = 14.sp
-//                            )
-//                        )
-//                    },
-//                    navigationIcon = {
-//                        IconButton(onClick = {}) {
-//                            Icon(Icons.Filled.ArrowBack,"backIcon", tint = White)
-//                        }
-//                    },
-//                    backgroundColor = MChild,
-//                    contentColor = Color.White,
-//                    elevation = 0.dp
-//                )
-//            }, content = {
-//                Column(
-//                    modifier = Modifier
-//                        .background(color = MChild)
-//                        .fillMaxHeight()
-//                        .fillMaxWidth(),
-//                ) {
+//import android.content.Context
+//import androidx.compose.foundation.Image
+//import androidx.compose.foundation.background
+//import androidx.compose.foundation.clickable
+//import androidx.compose.foundation.layout.*
+//import androidx.compose.foundation.rememberScrollState
+//import androidx.compose.foundation.shape.RoundedCornerShape
+//import androidx.compose.foundation.text.KeyboardOptions
+//import androidx.compose.material.*
+//import androidx.compose.material.icons.Icons
+//import androidx.compose.material.icons.filled.Lock
+//import androidx.compose.material.icons.filled.Person
+//import androidx.compose.runtime.Composable
+//import androidx.compose.ui.Modifier
+//import androidx.lifecycle.viewmodel.compose.viewModel
+//import androidx.compose.runtime.collectAsState
+//import androidx.compose.runtime.mutableStateOf
+//import androidx.compose.runtime.remember
+//import androidx.compose.ui.Alignment
+//import androidx.compose.ui.graphics.Color
+//import androidx.compose.ui.layout.ContentScale
+//import androidx.compose.ui.res.painterResource
+//import androidx.compose.ui.res.stringResource
+//import androidx.compose.ui.text.TextStyle
+//import androidx.compose.ui.text.input.VisualTransformation
+//import androidx.compose.ui.unit.dp
+//import androidx.compose.ui.unit.sp
+//import com.example.merybeltmobileapp.R
+//import com.example.merybeltmobileapp.assets.Fonts
+//import com.example.merybeltmobileapp.util.isTransferLeadingIcon
+//import androidx.compose.runtime.getValue
+//import androidx.compose.runtime.setValue
+//import androidx.compose.ui.text.input.ImeAction
+//import androidx.compose.ui.text.input.KeyboardType
+//import com.example.merybeltmobileapp.theme.*
+//import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
+//import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationMode
+//import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
+//import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
 //
-//                    Column(modifier = Modifier
-//                        .height(100.dp)
-//                        .fillMaxWidth()
-//                        .background(color = MChild)
-//                        .padding(20.dp),
-//                        verticalArrangement = Arrangement.Center
 //
-//                    ) {
+//@Composable
+//fun Authentication(
+//    viewModel: AuthenticationViewModel = viewModel(),
+//    localContext : Context
+//) {
 //
-//                        Text(
-//                            text = "Current Balance",
-//                            style = TextStyle(
-//                                fontFamily = Fonts.RobotoBold,
-//                                color = White,
-//                                fontSize = 13.sp
-//                            ),
-//                            modifier = Modifier
-//                                .align(Alignment.CenterHorizontally),
-//                        )
-//
-//                        Text(
-//                            text = "3,533.00",
-//                            modifier = Modifier
-//                                .align(Alignment.CenterHorizontally),
-//                            style = TextStyle(
-//                                fontSize = 29.sp,
-//                                fontFamily = Fonts.RobotoBold,
-//                                color = White
-//                            )
-//                        )
-//                    }
-//
-//                    Column(modifier = Modifier
-//                        .fillMaxHeight()
-//                        .fillMaxWidth(),
-//                    ) {
-//                        Column(
-//                            modifier = Modifier
-//                                .fillMaxHeight()
-//                                .fillMaxWidth()
-//                                .clip(RoundedCornerShape(topEnd = 30.dp, topStart = 30.dp))
-//                                .background(White)
-//                                .padding(start = 20.dp, end = 20.dp),
-//                            horizontalAlignment = Alignment.CenterHorizontally,
-//                        ){
-//                            UtilCompose.UtilSpaceInBetween(40)
-//                            UtilCompose.SpecimenSpinners(specimen,"Select Bank", 1)
-//                            UtilCompose.InputWidget("Account Number",0)
-//                            UtilCompose.InputWidget("Account Name",1)
-//                            UtilCompose.InputWidget("Amount",2)
-//                            UtilCompose.InputWidget("Remark",3)
-//                            UtilCompose.UtilSpaceInBetween(5)
-//                            Buttons("Continue")
-//                        }
-//                    }
-//                }
-//            }
-//        )
-//    }
-}
-
-
-
-//  MaterialTheme(
+//    MaterialTheme(
 //
 //    ) {
 //        Column(
@@ -161,11 +84,8 @@ fun transferUI(){
 //                    localContext = localContext,
 //                    modifier = Modifier,
 //                    authenticationState = viewModel.uiState.collectAsState().value,
-//                    dialogState = viewModel.showDialog.collectAsState().value,
-//                    viewModel = viewModel,
 //                    handleEvent = viewModel::handleEvent
 //                )
-//
 //            }
 //        }
 //    }
@@ -176,33 +96,32 @@ fun transferUI(){
 //    localContext: Context,
 //    modifier: Modifier = Modifier,
 //    authenticationState: AuthenticationState,
-//    dialogState: Boolean,
-//    viewModel: AuthenticationViewModel = viewModel(),
 //    handleEvent: (AuthenticationEvent) -> Unit,
 //) {
-//    AuthenticationForm(
-//        modifier = modifier,
-//        email = authenticationState.email,
-//        password = authenticationState.password,
-//        onEmailChanged = { email ->
-//            handleEvent(
-//                AuthenticationEvent.EmailChanged(email)
-//            )
-//        },
-//        onPasswordChanged = { password ->
-//            handleEvent(
-//                AuthenticationEvent.PasswordChanged(password)
-//            )
-//        },
-//        authenticationMode = authenticationState.authenticationMode,
-//        localContext = localContext,
-//        authenticationState = authenticationState,
-//        handleEvent,
-//        dialogState,
-//        viewModel
-//    )
+//    if (authenticationState.isLoading) {
+//        CircularProgressIndicator()
+//    } else {
+//        AuthenticationForm(
+//            modifier = modifier,
+//            email = authenticationState.email,
+//            password = authenticationState.password,
+//            onEmailChanged = { email ->
+//                handleEvent(
+//                    AuthenticationEvent.EmailChanged(email)
+//                )
+//            },
+//            onPasswordChanged = { password ->
+//                handleEvent(
+//                    AuthenticationEvent.PasswordChanged(password)
+//                )
+//            },
+//            authenticationMode = authenticationState.authenticationMode,
+//            localContext = localContext,
+//            authenticationState = authenticationState,
+//            handleEvent
+//        )
+//    }
 //}
-//
 //
 //@Composable
 //fun AuthenticationForm(
@@ -215,8 +134,7 @@ fun transferUI(){
 //    localContext: Context,
 //    authenticationState: AuthenticationState,
 //    handleEvent: (event: AuthenticationEvent) -> Unit,
-//    dialogState:Boolean,
-//    viewModel: AuthenticationViewModel = viewModel(),
+//
 //    ) {
 //
 //    Column(modifier.padding(20.dp)) {
@@ -239,12 +157,11 @@ fun transferUI(){
 //        Spacer(modifier = Modifier.height(16.dp))
 //
 //        AuthenticationButton(
-//            modifier = modifier,
+//            modifier  = modifier,
 //            authenticationState = authenticationState,
 //            handleEvent = handleEvent,
-//            localContext = localContext,
+//            localContext =  localContext,
 //            title = "Login",
-//            viewModel = viewModel
 //        )
 //
 //        Row(
@@ -260,11 +177,6 @@ fun transferUI(){
 //
 //                )
 //        }
-//
-//        AuthenticationErrorDialog(
-//            dialogState = dialogState,
-//            viewModel = viewModel
-//        )
 //    }
 //}
 //
@@ -301,7 +213,7 @@ fun transferUI(){
 //            .fillMaxWidth()
 //            .padding(start = 10.dp, end = 10.dp),
 //        value = email,
-//        onValueChange = { email ->
+//        onValueChange = {email->
 //            onEmailChanged(email)
 //        },
 //        keyboardOptions = keyboardOptions.copy(keyboardType = KeyboardType.Text),
@@ -360,7 +272,7 @@ fun transferUI(){
 //            .fillMaxWidth()
 //            .padding(start = 10.dp, end = 10.dp),
 //        value = password,
-//        onValueChange = { password ->
+//        onValueChange = {password->
 //            onPasswordChanged(password)
 //        },
 //        keyboardOptions = keyboardOptions.copy(
@@ -403,18 +315,23 @@ fun transferUI(){
 //}
 //
 //
+//
 //@Composable
 //fun AuthenticationButton(
 //    modifier: Modifier = Modifier,
 //    authenticationState: AuthenticationState,
 //    handleEvent: (event: AuthenticationEvent) -> Unit,
 //    localContext: Context,
-//    title: String = "",
-//    viewModel: AuthenticationViewModel = viewModel(),
+//    title: String = ""
 //) {
 //    Button(
 //        onClick = {
-//
+//            handleEvent(
+//                AuthenticationEvent.CheckRemote(
+//                    emailAddress=authenticationState.email,
+//                    password= authenticationState.password
+//                )
+//            )
 //        },
 //        //enabled = false,
 //        modifier = Modifier
@@ -423,7 +340,8 @@ fun transferUI(){
 //        colors = ButtonDefaults.buttonColors(
 //            backgroundColor = MChild
 //        ),
-//    ) {
+//
+//        ) {
 //        Text(
 //            text = title,
 //            style = TextStyle(
@@ -433,51 +351,9 @@ fun transferUI(){
 //            ),
 //        )
 //    }
+//
 //}
 //
 //
-//@Composable
-//fun AuthenticationErrorDialog(
-//    dialogState: Boolean,
-//    viewModel: AuthenticationViewModel = viewModel(),
-//) {
 //
-//    if (dialogState) {
 //
-//        AlertDialog(
-//            onDismissRequest = {viewModel.onDialogConfirm(false)},
-//            buttons = {
-//                Box(
-//                    modifier = Modifier
-//                        .fillMaxWidth(),
-//                    contentAlignment = Alignment.CenterEnd
-//                ) {
-//                    TextButton(
-//                        onClick = {
-//                            viewModel.onDialogConfirm(false)
-//                        }
-//                    ) {
-//                        Text(
-//                            text = stringResource(
-//                                id = R.string.error_action
-//                            )
-//                        )
-//                    }
-//                }
-//            },
-//            title = {
-//                Text(
-//                    text = stringResource(
-//                        id = R.string.error_title
-//                    ),
-//                    fontSize = 18.sp
-//                )
-//            },
-//            text = {
-//                Text(
-//                    text = "xgsv"
-//                )
-//            }
-//        )
-//    }
-//}

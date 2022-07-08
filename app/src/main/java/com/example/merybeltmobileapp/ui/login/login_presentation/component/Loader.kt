@@ -1,0 +1,29 @@
+package com.example.merybeltmobileapp.ui.login.login_presentation.component
+
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
+
+@Composable
+fun CircularPropagations(
+    status: Boolean
+){
+
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .padding(50.dp),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier
+                .width(30.dp)
+                .height(30.dp),
+            )
+    }
+
+}

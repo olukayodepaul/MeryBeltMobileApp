@@ -1,12 +1,12 @@
 package com.example.merybeltmobileapp.ui.login.login_data
 
-import java.util.*
+
 
 data class AuthenticationState(
-    val authenticationMode: AuthenticationMode = AuthenticationMode.SIGN_IN,
-    val email: String = "",
+    val username: String = "",
     val password: String = "",
-    val passwordRequirements: List<Arrays> = emptyList(),
-    val isLoading: Boolean = false,
-    val error: String? = null
+    val loadingProgressBar: Boolean = false,
+    val isDialog: Boolean = false
+
 )
+

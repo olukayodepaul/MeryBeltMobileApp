@@ -15,7 +15,6 @@ import com.example.merybeltmobileapp.assets.Fonts
 import com.example.merybeltmobileapp.theme.MChild
 import com.example.merybeltmobileapp.theme.White
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
-import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
 
 
 @Composable

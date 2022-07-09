@@ -48,5 +48,13 @@ class MerryBeltApiRepositoryImpl(
         sharedPref.saveShopAddress(shopaddress)
     }
 
+    override suspend fun saveCustomerId(customerId: Int) {
+        sharedPref.saveCustomerId(customerId)
+    }
+
+    override suspend fun saveBalance(balance: Float) {
+        sharedPref.saveBalance(balance)
+    }
+
 
 }

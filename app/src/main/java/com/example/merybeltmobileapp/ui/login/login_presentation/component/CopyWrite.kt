@@ -26,7 +26,7 @@ fun copyWrite(
                 .padding(20.dp),
             onClick = {},
             style = TextStyle(
-                fontSize = 10.sp,
+                fontSize = 13.sp,
                 fontFamily = MontserratBold,
                 //textDecoration = TextDecoration.Underline,
                 color = Menus

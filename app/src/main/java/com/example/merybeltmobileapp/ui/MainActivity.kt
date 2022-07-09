@@ -28,6 +28,9 @@ class MainActivity : ComponentActivity() {
             val handleEvent = viewModel::eventHandler
 
             //check if the screen state is login or home page.
+
+
+
             ScreenThem(
                 viewModel = viewModel,
                 localContext = localContext,

@@ -1,16 +1,22 @@
 package com.example.merybeltmobileapp.ui.login.login_presentation
 
 
-import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.merybeltmobileapp.Application
+import com.example.merybeltmobileapp.provider.api.api_provider_data.ApiState
 import com.example.merybeltmobileapp.provider.api.api_provider_domain.MerryBeltApiRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
+import com.example.merybeltmobileapp.ui.login.login_data.login_dto.LoginCredential
+import com.example.merybeltmobileapp.util.getHash
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,6 +24,10 @@ class AuthenticationViewModel @Inject constructor(
     private val repo: MerryBeltApiRepository,
     private val appContext: Application,
 ): ViewModel() {
+
+
+    private val _apiState = MutableStateFlow<ApiState>(ApiState.Loading)
+    val apiState = _apiState.asStateFlow()
 
     var uiState = MutableStateFlow(AuthenticationState())
 
@@ -58,11 +68,42 @@ class AuthenticationViewModel @Inject constructor(
                     isDialogShow = true
                 )
             }else{
-                //Make a network Call from here
+                _apiState.value = ApiState.Loading
+                try {
+                    val requestTime = SimpleDateFormat("yyyyMMddHHmmssZ").format(Date())
+                    val apiHashKey = getHash("${repo.apiUser()}${repo.token()}$requestTime")
+                    val apiUser = 8
 
+                    val bodyRequest = LoginCredential(userName, password)
+                    val handleApiRequest = repo.login(requestTime, apiHashKey, apiUser, bodyRequest)
+
+                    if(handleApiRequest.isSuccessful && handleApiRequest.code() == 200) {
+                        val isResponseBody = handleApiRequest.body()
+                        if(isResponseBody!!.errorStatusCode==1){
+
+                            repo.saveShopAddress(isResponseBody.shopAddress)
+                            repo.saveShopName(isResponseBody.shopName)
+                            repo.saveBalance(isResponseBody.balance.balance)
+                            repo.saveCustomerId(isResponseBody.customerId)
+
+                            _apiState.value = ApiState.Success(200)
+
+                        }else{
+                            _apiState.value = ApiState.Error(isResponseBody.errorMessage)
+                        }
+                    }else{
+                        _apiState.value = ApiState.Error("unExpected Error, Try again")
+                        Toast.makeText(appContext, "3 ${handleApiRequest.body()}", Toast.LENGTH_LONG).show()
+                    }
+
+                }catch(e: Throwable) {
+                    _apiState.value = ApiState.Error(e.message)
+                }
             }
         }
     }
+
+
 
     fun eventHandler(authenticationEvent: AuthenticationEvent) {
         when (authenticationEvent) {

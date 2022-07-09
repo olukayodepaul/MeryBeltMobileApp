@@ -21,4 +21,8 @@ interface MerryBeltApiRepository {
 
     suspend fun saveShopAddress(shopaddress: String)
 
+    suspend fun saveCustomerId(customerId: Int)
+
+    suspend fun saveBalance(balance: Float)
+
 }

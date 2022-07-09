@@ -6,8 +6,11 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
 import com.example.merybeltmobileapp.R
+import com.example.merybeltmobileapp.assets.Fonts
+import com.example.merybeltmobileapp.theme.MChild
 
 @Composable
 fun AuthenticationErrorDialogs (
@@ -27,7 +30,14 @@ fun AuthenticationErrorDialogs (
                     onDismissRequest()
                 })
                 {
-                    Text(text = "Close")
+                    Text(
+                        text = "Close",
+                        style = TextStyle(
+                            color = MChild,
+                            fontFamily = Fonts.Montserrat,
+                            fontSize = 14.sp
+                        )
+                    )
                 }
             },
             title = {

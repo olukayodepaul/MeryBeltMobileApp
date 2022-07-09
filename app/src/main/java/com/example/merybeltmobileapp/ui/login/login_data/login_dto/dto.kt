@@ -14,27 +14,24 @@ data class LoginCredential(
 )
 
 data class LoginResponse(
-    @SerializedName("response")
+    @SerializedName("errorStatusCode")
     @Expose
-    val response: Error,
+    val errorStatusCode: Int,
+    @SerializedName("customerId")
+    @Expose
+    val customerId: Int,
     @SerializedName("shopName")
     @Expose
     val shopName: String,
     @SerializedName("shopAddress")
     @Expose
     val shopAddress: String,
+    @SerializedName("errorMessage")
+    @Expose
+    val errorMessage: String,
     @SerializedName("balance")
     @Expose
     val balance: Balance,
-)
-
-data class Error(
-    @SerializedName("stastus")
-    @Expose
-    val stastus: Int,
-    @SerializedName("data")
-    @Expose
-    val data: String
 )
 
 data class Balance(
@@ -50,16 +47,5 @@ data class Balance(
     @SerializedName("instantBetSettlementBalance")
     @Expose
     val instantBetSettlementBalance: Float
-)
-
-data class LoginEvents(
-    val userName: String,
-    val passowrd: String,
-)
-
-data class dialogMapper(
-    val isDialogShow: Boolean,
-    val isDialogMessage: String,
-    val isDialogTitle: String
 )
 

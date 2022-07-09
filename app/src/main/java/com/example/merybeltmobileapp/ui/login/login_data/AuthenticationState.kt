@@ -6,7 +6,5 @@ data class AuthenticationState(
     val loadingProgressBar: Boolean = false,
     val isDialogTitle: String = "Notification",
     val isDialogMessage: String = "",
-    val isDialogShow: Boolean = false
+    val isDialogShow: Boolean = false,
 )
-
-

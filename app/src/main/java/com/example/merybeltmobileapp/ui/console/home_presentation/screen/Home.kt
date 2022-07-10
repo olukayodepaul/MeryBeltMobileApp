@@ -23,6 +23,7 @@ import com.example.merybeltmobileapp.theme.MChild
 import com.example.merybeltmobileapp.theme.White
 import com.example.merybeltmobileapp.ui.console.home_data.ConsoleEvent
 import com.example.merybeltmobileapp.ui.console.home_presentation.ConsoleViewModel
+import com.example.merybeltmobileapp.ui.console.home_presentation.console_component.routers
 
 
 @Composable
@@ -99,6 +100,42 @@ fun HomeScreen(
                         .padding(start = 20.dp, end = 20.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ){
+
+
+                    Spacer(modifier = Modifier.padding(bottom = 45.dp))
+                    routers(
+                        navController= navController,
+                        imageSwitchers = 0,
+                        routerLinkName = "Credit Account",
+                        route = "credit_route"
+                    )
+
+                    Spacer(modifier = Modifier.padding(bottom = 15.dp))
+
+                    routers(
+                        navController= navController,
+                        imageSwitchers = 1,
+                        routerLinkName = "Withdraw",
+                        route = "withdraw_route"
+                    )
+
+                    Spacer(modifier = Modifier.padding(bottom = 15.dp))
+
+                    routers(
+                        navController= navController,
+                        imageSwitchers = 2,
+                        routerLinkName = "Transfer",
+                        route = "transfer_route"
+                    )
+
+                    Spacer(modifier = Modifier.padding(bottom = 15.dp))
+
+                    routers(
+                        navController= navController,
+                        imageSwitchers = 3,
+                        routerLinkName = "Bill payment",
+                        route = "bill_route"
+                    )
 
                 }
             }

@@ -1,27 +1,33 @@
 package com.example.merybeltmobileapp.ui.login.login_presentation.component
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.example.merybeltmobileapp.theme.White
+import com.example.merybeltmobileapp.ui.login.login_data.ApiState
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
 import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
 
 
 @Composable
-fun ScreenThem(
+fun LoginScreenThem(
+    navHostControllers: NavHostController,
     viewModel: AuthenticationViewModel = hiltViewModel(),
     localContext: Context,
     authenticationState: AuthenticationState,
-    handleEvent: (AuthenticationEvent) -> Unit
+    handleEvent: (AuthenticationEvent) -> Unit,
     ) {
     MaterialTheme{
+
         Column(
             modifier = Modifier
                 .padding(0.dp)
@@ -63,7 +69,8 @@ fun ScreenThem(
                 Spacer(modifier = Modifier.padding(bottom = 10.dp))
                 AuthenticationButtons(
                     title = "Login",
-                    handleEvent = handleEvent,
+                    viewModel = viewModel,
+                    uiState = authenticationState
                 )
                 Spacer(modifier = Modifier.padding(bottom = 15.dp))
                 CircularPropagations(
@@ -77,7 +84,6 @@ fun ScreenThem(
                     onDismissRequest = {
                         handleEvent(
                             AuthenticationEvent.ShowUserDialog(
-                                isDialogTitle = "",
                                 isDialogMessage = "",
                                 isDialogShow = false
                             )
@@ -85,7 +91,36 @@ fun ScreenThem(
                     }
                 )
                 copyWrite(copyWriteYear="2022")
+
+                LaunchedEffect(key1 = true) {
+                    viewModel.uiEvent.collect { event ->
+                        when (event) {
+                            is ApiState.Success -> {
+                                handleEvent(
+                                    AuthenticationEvent.ShowUserDialog(
+                                        isDialogMessage = event.album,
+                                        isDialogShow = true
+                                    )
+                                )
+                            }
+                            else -> Unit
+                        }
+                    }
+                }
+
             }
         }
     }
 }
+
+//when (apiState) {
+//                    is ApiState.Loading -> {
+//                        Toast.makeText(localContext, "Loading", Toast.LENGTH_SHORT).show()
+//                    }
+//                    is ApiState.Success -> {
+//                        Toast.makeText(localContext, "Success", Toast.LENGTH_SHORT).show()
+//                    }
+//                    is ApiState.Error -> {
+//                        Toast.makeText(localContext, "Error", Toast.LENGTH_SHORT).show()
+//                    }
+//                }

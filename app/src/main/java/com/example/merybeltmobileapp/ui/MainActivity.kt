@@ -1,5 +1,6 @@
 package com.example.merybeltmobileapp.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,29 +10,33 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
-import com.example.merybeltmobileapp.ui.login.login_presentation.component.ScreenThem
+import com.example.merybeltmobileapp.ui.login.login_presentation.component.LoginScreenThem
+import com.example.merybeltmobileapp.ui.navigation.setupNavGraph
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.asStateFlow
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private lateinit var  viewModel: AuthenticationViewModel
+    private lateinit var localContext: Context
+    private lateinit var navHostController: NavHostController
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
 
-            val viewModel: AuthenticationViewModel = hiltViewModel()
-            val localContext = LocalContext.current
-            val modifier: Modifier = Modifier
+            viewModel = hiltViewModel()
+            localContext = LocalContext.current
             val authenticationState = viewModel.uiState.collectAsState().value
             val handleEvent = viewModel::eventHandler
+            navHostController = rememberNavController()
 
-            //check if the screen state is login or home page.
-
-
-
-            ScreenThem(
+            setupNavGraph(
+                navController = navHostController,
                 viewModel = viewModel,
                 localContext = localContext,
                 authenticationState = authenticationState,

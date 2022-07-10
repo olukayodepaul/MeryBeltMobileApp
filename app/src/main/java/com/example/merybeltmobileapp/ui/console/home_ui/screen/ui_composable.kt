@@ -1,4 +1,4 @@
-package com.example.merybeltmobileapp.ui.home.home_ui.screen
+package com.example.merybeltmobileapp.ui.console.home_ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

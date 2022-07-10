@@ -1,4 +1,4 @@
-package com.example.merybeltmobileapp.ui.home.home_ui
+package com.example.merybeltmobileapp.ui.console.home_ui
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.*

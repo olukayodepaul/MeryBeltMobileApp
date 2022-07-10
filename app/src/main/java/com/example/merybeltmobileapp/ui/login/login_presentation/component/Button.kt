@@ -14,19 +14,19 @@ import androidx.compose.ui.unit.sp
 import com.example.merybeltmobileapp.assets.Fonts
 import com.example.merybeltmobileapp.theme.MChild
 import com.example.merybeltmobileapp.theme.White
-import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
+import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
+import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
 
 
 @Composable
 fun AuthenticationButtons(
     title:String = "",
-    handleEvent :(AuthenticationEvent)->Unit
+    viewModel: AuthenticationViewModel,
+    uiState: AuthenticationState
 ) {
     Button(
         onClick = {
-            handleEvent(
-                AuthenticationEvent.apiNetwork
-            )
+            viewModel.AuthApiRequest(uiState.username, uiState.password)
         },
         modifier = Modifier
             .fillMaxWidth()
@@ -45,3 +45,4 @@ fun AuthenticationButtons(
         )
     }
 }
+

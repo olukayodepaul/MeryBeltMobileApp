@@ -16,36 +16,33 @@ data class LoginCredential(
 data class LoginResponse(
     @SerializedName("errorStatusCode")
     @Expose
-    val errorStatusCode: Int,
+    val errorStatusCode: Int? = 0,
     @SerializedName("customerId")
     @Expose
-    val customerId: Int,
+    val customerId: Int? = 0,
     @SerializedName("shopName")
     @Expose
-    val shopName: String,
+    val shopName: String? = "",
     @SerializedName("shopAddress")
     @Expose
-    val shopAddress: String,
-    @SerializedName("errorMessage")
-    @Expose
-    val errorMessage: String,
+    val shopAddress: String? = "",
     @SerializedName("balance")
     @Expose
-    val balance: Balance,
+    val balance: Balance? = null,
 )
 
 data class Balance(
     @SerializedName("balance")
     @Expose
-    val balance: Float,
+    val balance: Float? = 0f,
     @SerializedName("loanAmount")
     @Expose
-    val loanAmount: Float,
+    val loanAmount: Float? = 0f,
     @SerializedName("cashierLoanAmount")
     @Expose
-    val cashierLoanAmount: Float,
+    val cashierLoanAmount: Float? = 0f,
     @SerializedName("instantBetSettlementBalance")
     @Expose
-    val instantBetSettlementBalance: Float
+    val instantBetSettlementBalance: Float? = 0f,
 )
 

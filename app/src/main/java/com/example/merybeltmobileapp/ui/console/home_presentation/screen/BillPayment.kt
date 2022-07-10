@@ -1,4 +1,4 @@
-package com.example.merybeltmobileapp.ui.console.home_ui.screen
+package com.example.merybeltmobileapp.ui.console.home_presentation.screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

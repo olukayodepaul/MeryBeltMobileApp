@@ -1,7 +1,6 @@
-package com.example.merybeltmobileapp.ui.login.login_presentation.component
+package com.example.merybeltmobileapp.ui.login.login_presentation.auth_component
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -16,6 +15,7 @@ import com.example.merybeltmobileapp.ui.login.login_data.ApiState
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
 import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
+import com.example.merybeltmobileapp.ui.navigation.NaHost
 
 
 @Composable
@@ -84,43 +84,45 @@ fun LoginScreenThem(
                     onDismissRequest = {
                         handleEvent(
                             AuthenticationEvent.ShowUserDialog(
-                                isDialogMessage = "",
-                                isDialogShow = false
+                                message = "",
+                                viewStatus = false
                             )
                         )
                     }
                 )
+
                 copyWrite(copyWriteYear="2022")
 
                 LaunchedEffect(key1 = true) {
                     viewModel.uiEvent.collect { event ->
                         when (event) {
                             is ApiState.Success -> {
+                                if(event.status==200) {
+                                    navHostControllers.navigate(route = NaHost.HomeScreen.route){
+                                        popUpTo(NaHost.MainScreen.route) {
+                                            inclusive = true
+                                        }
+                                    }
+                                }
+                            }
+                            is ApiState.Error->{
                                 handleEvent(
                                     AuthenticationEvent.ShowUserDialog(
-                                        isDialogMessage = event.album,
-                                        isDialogShow = true
+                                        message = event.error,
+                                        viewStatus = true
                                     )
                                 )
                             }
                             else -> Unit
                         }
+                        handleEvent(
+                            AuthenticationEvent.ChangeUserProgressBar(
+                                loader = false
+                            )
+                        )
                     }
                 }
-
             }
         }
     }
 }
-
-//when (apiState) {
-//                    is ApiState.Loading -> {
-//                        Toast.makeText(localContext, "Loading", Toast.LENGTH_SHORT).show()
-//                    }
-//                    is ApiState.Success -> {
-//                        Toast.makeText(localContext, "Success", Toast.LENGTH_SHORT).show()
-//                    }
-//                    is ApiState.Error -> {
-//                        Toast.makeText(localContext, "Error", Toast.LENGTH_SHORT).show()
-//                    }
-//                }

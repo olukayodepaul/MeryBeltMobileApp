@@ -6,12 +6,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.merybeltmobileapp.ui.console.home_ui.HomeMainScreen
-import com.example.merybeltmobileapp.ui.login.login_data.ApiState
+import com.example.merybeltmobileapp.ui.console.home_presentation.bottom_navigation.HomeMainScreen
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
 import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
-import com.example.merybeltmobileapp.ui.login.login_presentation.component.LoginScreenThem
+import com.example.merybeltmobileapp.ui.login.login_presentation.auth_component.LoginScreenThem
 
 
 @Composable
@@ -41,7 +40,10 @@ fun setupNavGraph(
         composable(
             route = NaHost.HomeScreen.route
         ){
-            HomeMainScreen()
+            HomeMainScreen(
+                navController = navController,
+                localContext =  localContext,
+            )
         }
     }
 }

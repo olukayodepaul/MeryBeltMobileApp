@@ -1,14 +1,12 @@
-package com.example.merybeltmobileapp.ui.login.login_presentation.component
+package com.example.merybeltmobileapp.ui.login.login_presentation.auth_component
 
 
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
-import com.example.merybeltmobileapp.R
 import com.example.merybeltmobileapp.assets.Fonts
 import com.example.merybeltmobileapp.theme.MChild
 

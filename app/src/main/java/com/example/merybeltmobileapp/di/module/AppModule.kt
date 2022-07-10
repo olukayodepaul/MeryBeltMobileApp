@@ -36,11 +36,12 @@ object AppModule {
         merryBeltApi: MerryBeltApi,
         @Named("TOKEN_KEY") authToken: String,
         @Named("API_USER_LOGIN") apiUser: String,
+        apiId: Int,
         merryBeltRoomDao: MerryBeltRoomDao,
         merryPref: MerryBeltPrefRepository
     ): MerryBeltApiRepository{
         return MerryBeltApiRepositoryImpl(
-            merryBeltApi, authToken, apiUser, merryBeltRoomDao, merryPref
+            merryBeltApi, authToken, apiUser, apiId, merryBeltRoomDao, merryPref
         )
     }
 

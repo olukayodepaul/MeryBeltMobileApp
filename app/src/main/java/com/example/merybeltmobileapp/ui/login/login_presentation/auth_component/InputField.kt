@@ -1,41 +1,34 @@
-package com.example.merybeltmobileapp.ui.login.login_presentation.component
+package com.example.merybeltmobileapp.ui.login.login_presentation.auth_component
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Lock
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.merybeltmobileapp.R
 import com.example.merybeltmobileapp.assets.Fonts
 import com.example.merybeltmobileapp.theme.Blues
 import com.example.merybeltmobileapp.theme.Borderline
 import com.example.merybeltmobileapp.theme.GreyTransparent
-import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
-import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
+
 
 @Composable
-fun PasswordFields (
+fun InputForms(
     username: String,
     onValueChange: (String) -> Unit,
     label:String = "",
+    visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
 ) {
-    var isPasswordHidden by remember {
-        mutableStateOf(true)
-    }
 
     val bColor = Borderline
 
@@ -44,14 +37,11 @@ fun PasswordFields (
             .fillMaxWidth()
             .padding(start = 10.dp, end = 10.dp),
         value = username,
-        onValueChange = {password->
-            onValueChange(password)
+        onValueChange = {username->
+            onValueChange(username)
         },
-        keyboardOptions = keyboardOptions.copy(
-            keyboardType = KeyboardType.Text,
-            imeAction = ImeAction.Next
-        ),
-        singleLine = true,
+        keyboardOptions = keyboardOptions.copy(keyboardType = KeyboardType.Text),
+        visualTransformation = visualTransformation,
         label = {
             Text(
                 text = label,
@@ -62,26 +52,17 @@ fun PasswordFields (
                 )
             )
         },
+        maxLines = 1,
+        shape = RoundedCornerShape(6.dp),
         leadingIcon = {
-            Icon(
-                imageVector = Icons.Default.Lock,
-                contentDescription = null
-            )
-        },
-        trailingIcon = {
-            Icon(
-                modifier = Modifier.clickable(
-                    onClickLabel = if (isPasswordHidden) {
-                        stringResource(id = R.string.cd_show_password)
-                    } else stringResource(id = R.string.cd_hide_password)
-                ) {
-                    isPasswordHidden = !isPasswordHidden
-                },
-                painter = if (isPasswordHidden) {
-                    painterResource(R.drawable.ic_baseline_visibility_24)
-                } else painterResource(R.drawable.ic_baseline_visibility_off_24),
-                contentDescription = null
-            )
+            IconButton(onClick = {
+
+            }) {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = null
+                )
+            }
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(
             backgroundColor = Color(
@@ -95,8 +76,6 @@ fun PasswordFields (
             ),
             focusedLabelColor = GreyTransparent,
             cursorColor = GreyTransparent,
-        ),
-        maxLines = 1,
-        shape = RoundedCornerShape(6.dp),
+        )
     )
 }

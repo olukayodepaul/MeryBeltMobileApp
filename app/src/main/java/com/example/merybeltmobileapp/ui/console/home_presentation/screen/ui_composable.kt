@@ -1,4 +1,4 @@
-package com.example.merybeltmobileapp.ui.console.home_ui.screen
+package com.example.merybeltmobileapp.ui.console.home_presentation.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -117,8 +117,3 @@ fun changeBgColor(switchColor: Int): Color {
     return color[switchColor]
 }
 
-@Composable
-@Preview
-fun HomeScreenPreview() {
-    HomeScreen()
-}

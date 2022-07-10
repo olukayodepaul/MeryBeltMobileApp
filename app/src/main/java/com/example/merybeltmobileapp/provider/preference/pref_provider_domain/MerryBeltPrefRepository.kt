@@ -6,8 +6,9 @@ interface MerryBeltPrefRepository {
 
     suspend fun saveShopName(shopname: String)
     suspend fun saveShopAddress(shopaddress: String)
-    suspend fun saveCustomerId(customerId: Int)
-    suspend fun saveBalance(balance: Float)
+    suspend fun saveCustomerId(customerId: String)
+    suspend fun saveBalance(balance: String)
+    suspend fun loadUserInfo(): UsersInfoDomain
 
     //suspend fun loadUserInfo(): UsersInfoDomain
 

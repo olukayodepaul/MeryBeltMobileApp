@@ -1,4 +1,4 @@
-package com.example.merybeltmobileapp.ui.login.login_presentation.component
+package com.example.merybeltmobileapp.ui.login.login_presentation.auth_component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

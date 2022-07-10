@@ -1,5 +1,6 @@
-package com.example.merybeltmobileapp.ui.console.home_ui
+package com.example.merybeltmobileapp.ui.console.home_presentation.bottom_navigation
 
+import android.content.Context
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -13,15 +14,20 @@ import androidx.navigation.compose.rememberNavController
 import com.example.merybeltmobileapp.theme.Purple500
 import com.example.merybeltmobileapp.theme.White
 
-//MainScreen()
 
 @Composable
-fun HomeMainScreen() {
+fun HomeMainScreen(
+    navController: NavHostController,
+    localContext: Context,
+) {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }
     ) {
-        BottomNavGraph(navController = navController)
+        BottomNavGraph(
+            navController = navController,
+            localContext =  localContext
+        )
     }
 }
 

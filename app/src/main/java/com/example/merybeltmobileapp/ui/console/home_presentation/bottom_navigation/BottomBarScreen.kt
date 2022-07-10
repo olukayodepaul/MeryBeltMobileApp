@@ -1,4 +1,4 @@
-package com.example.merybeltmobileapp.ui.console.home_ui
+package com.example.merybeltmobileapp.ui.console.home_presentation.bottom_navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home

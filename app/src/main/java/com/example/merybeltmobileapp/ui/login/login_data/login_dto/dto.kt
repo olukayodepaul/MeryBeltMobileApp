@@ -19,7 +19,7 @@ data class LoginResponse(
     val errorStatusCode: Int? = 0,
     @SerializedName("customerId")
     @Expose
-    val customerId: Int? = 0,
+    val customerId: String? = "",
     @SerializedName("shopName")
     @Expose
     val shopName: String? = "",
@@ -34,7 +34,7 @@ data class LoginResponse(
 data class Balance(
     @SerializedName("balance")
     @Expose
-    val balance: Float? = 0f,
+    val balance: String? = "",
     @SerializedName("loanAmount")
     @Expose
     val loanAmount: Float? = 0f,

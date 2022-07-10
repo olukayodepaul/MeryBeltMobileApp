@@ -19,23 +19,25 @@ class MerryBeltPrefRepositoryImpl(
             .apply()
     }
 
-    override suspend fun saveCustomerId(customerId: Int) {
+    override suspend fun saveCustomerId(customerId: String) {
         sharedPref.edit()
-            .putInt(MerryBeltPrefRepository.KEY_CUSTOMERID, customerId)
+            .putString(MerryBeltPrefRepository.KEY_CUSTOMERID, customerId)
             .apply()
     }
 
-    override suspend fun saveBalance(balance: Float) {
+    override suspend fun saveBalance(balance: String) {
         sharedPref.edit()
-            .putFloat(MerryBeltPrefRepository.KEY_BALANCE, balance)
+            .putString(MerryBeltPrefRepository.KEY_BALANCE, balance)
             .apply()
     }
 
-//    override suspend fun loadUserInfo(): UsersInfoDomain {
-//        val age = sharedPref.getInt(MerryBeltPrefRepository.KEY_AGE, -1)
-//        return UsersInfoDomain(
-//            age = age,
-//        )
-//    }
+    override suspend fun loadUserInfo(): UsersInfoDomain {
+        val customerId = sharedPref.getString(MerryBeltPrefRepository.KEY_CUSTOMERID, "0121999039")
+        val balance = sharedPref.getString(MerryBeltPrefRepository.KEY_BALANCE, "3,569.00")
+        return UsersInfoDomain(
+            customerId = customerId!!,
+            balance = balance!!
+        )
+    }
 
 }

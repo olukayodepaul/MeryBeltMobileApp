@@ -25,4 +25,10 @@ object AuthModule {
         return "external-user"
     }
 
+    @Provides
+    @Singleton
+    fun apiID() : Int {
+        return 8
+    }
+
 }

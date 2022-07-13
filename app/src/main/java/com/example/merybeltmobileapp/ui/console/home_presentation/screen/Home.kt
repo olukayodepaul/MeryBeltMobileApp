@@ -23,12 +23,12 @@ import com.example.merybeltmobileapp.theme.MChild
 import com.example.merybeltmobileapp.theme.White
 import com.example.merybeltmobileapp.ui.console.home_data.ConsoleEvent
 import com.example.merybeltmobileapp.ui.console.home_presentation.ConsoleViewModel
-import com.example.merybeltmobileapp.ui.console.home_presentation.console_component.routers
+import com.example.merybeltmobileapp.ui.console.home_presentation.console_component.appIntents
 
 
 @Composable
 fun HomeScreen(
-    navController: NavHostController,
+    navHostControllers: NavHostController,
     localContext: Context,
     viewModel: ConsoleViewModel,
     consoleEventHandler: (ConsoleEvent)->Unit
@@ -103,8 +103,8 @@ fun HomeScreen(
 
 
                     Spacer(modifier = Modifier.padding(bottom = 45.dp))
-                    routers(
-                        navController= navController,
+                    appIntents(
+                        navHostControllers= navHostControllers,
                         imageSwitchers = 0,
                         routerLinkName = "Credit Account",
                         route = "credit_route"
@@ -112,8 +112,8 @@ fun HomeScreen(
 
                     Spacer(modifier = Modifier.padding(bottom = 15.dp))
 
-                    routers(
-                        navController= navController,
+                    appIntents(
+                        navHostControllers= navHostControllers,
                         imageSwitchers = 1,
                         routerLinkName = "Withdraw",
                         route = "withdraw_route"
@@ -121,8 +121,8 @@ fun HomeScreen(
 
                     Spacer(modifier = Modifier.padding(bottom = 15.dp))
 
-                    routers(
-                        navController= navController,
+                    appIntents(
+                        navHostControllers= navHostControllers,
                         imageSwitchers = 2,
                         routerLinkName = "Transfer",
                         route = "transfer_route"
@@ -130,13 +130,12 @@ fun HomeScreen(
 
                     Spacer(modifier = Modifier.padding(bottom = 15.dp))
 
-                    routers(
-                        navController= navController,
+                    appIntents(
+                        navHostControllers= navHostControllers,
                         imageSwitchers = 3,
                         routerLinkName = "Bill payment",
                         route = "bill_route"
                     )
-
                 }
             }
         }

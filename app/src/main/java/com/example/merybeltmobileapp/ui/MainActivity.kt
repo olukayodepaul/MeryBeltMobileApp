@@ -9,6 +9,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.merybeltmobileapp.ui.console.home_presentation.ConsoleViewModel
 import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
 import com.example.merybeltmobileapp.ui.navigation.setupNavGraph
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var  viewModel: AuthenticationViewModel
+    private lateinit var  consoleViewModel: ConsoleViewModel
     private lateinit var localContext: Context
     private lateinit var navHostController: NavHostController
 
@@ -26,9 +28,12 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             viewModel = hiltViewModel()
+            consoleViewModel = hiltViewModel()
             localContext = LocalContext.current
             val authenticationState = viewModel.uiState.collectAsState().value
+            val consoleState = consoleViewModel.uiState.collectAsState().value
             val handleEvent = viewModel::authEventHandler
+            val consoleEvent = consoleViewModel::consoleEventHandler
             navHostController = rememberNavController()
 
             setupNavGraph(
@@ -36,7 +41,9 @@ class MainActivity : ComponentActivity() {
                 viewModel = viewModel,
                 localContext = localContext,
                 authenticationState = authenticationState,
-                handleEvent = handleEvent
+                handleEvent = handleEvent,
+                consoleState = consoleState,
+                consoleEvent = consoleEvent
             )
         }
     }

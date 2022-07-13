@@ -2,7 +2,7 @@ package com.example.merybeltmobileapp.di.module
 
 import com.example.merybeltmobileapp.BuildConfig
 import com.example.merybeltmobileapp.provider.api.api_provider_data.MerryBeltApi
-import com.example.merybeltmobileapp.util.SupportInterceptor
+import com.example.merybeltmobileapp.util.BasicAuthInterceptor
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -23,7 +23,10 @@ object ApiModules {
     @Provides
     fun provideApi(): MerryBeltApi {
 
-        val supportInterceptor = SupportInterceptor()
+        val supportInterceptor = BasicAuthInterceptor(
+            username = "restdevice",
+            password = "5NDM1NjckJV4KK"
+        )
 
         val okHttpClientBuilder = OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -45,6 +48,7 @@ object ApiModules {
             .build()
             .create(MerryBeltApi::class.java)
     }
+
 
 }
 

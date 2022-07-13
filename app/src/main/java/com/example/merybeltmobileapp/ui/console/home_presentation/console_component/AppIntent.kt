@@ -2,6 +2,7 @@ package com.example.merybeltmobileapp.ui.console.home_presentation.console_compo
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -14,27 +15,29 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.merybeltmobileapp.R
 import com.example.merybeltmobileapp.assets.Fonts
 import com.example.merybeltmobileapp.theme.Blues
 import com.example.merybeltmobileapp.ui.console.home_presentation.screen.changeBgColor
 import com.example.merybeltmobileapp.ui.console.home_presentation.screen.getNameInitialsBg
+import com.example.merybeltmobileapp.ui.navigation.NaHost
 
 @Composable
-fun routers(
-    navController: NavController? = null,
+fun appIntents(
+    navHostControllers: NavHostController,
     imageSwitchers: Int = 0,
     routerLinkName: String = "",
     route: String = ""
 ){
-
-
     Card(
         elevation = 3.dp,
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier
             .fillMaxWidth()
+            .clickable {
+                //navHostControllers.navigate(NaHost.CreditScreen.route)
+            }
     ) {
         Row(
             modifier = Modifier.padding(10.dp)

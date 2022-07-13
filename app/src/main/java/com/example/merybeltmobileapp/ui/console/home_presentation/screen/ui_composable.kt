@@ -8,8 +8,6 @@ import com.example.merybeltmobileapp.theme.Blu
 import com.example.merybeltmobileapp.theme.Purple200
 import com.example.merybeltmobileapp.theme.reds
 
-
-
 @Composable
 fun getNameInitialsBg(switchImage: Int):Int {
     val drawables = arrayOf(

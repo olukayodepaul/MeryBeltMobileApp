@@ -24,7 +24,7 @@ fun LoginScreenThem(
     viewModel: AuthenticationViewModel = hiltViewModel(),
     localContext: Context,
     authenticationState: AuthenticationState,
-    handleEvent: (AuthenticationEvent) -> Unit,
+    handleEvent: (AuthenticationEvent) -> Unit, //Auth event
     ) {
     MaterialTheme{
 
@@ -98,9 +98,11 @@ fun LoginScreenThem(
                         when (event) {
                             is ApiState.Success -> {
                                 if(event.status==200) {
-                                    navHostControllers.navigate(route = NaHost.HomeScreen.route){
+                                    navHostControllers.navigate(route = NaHost.CreditScreen.route)
+                                    {
                                         popUpTo(NaHost.MainScreen.route) {
                                             inclusive = true
+                                            //NaHost.CreditScreen.route
                                         }
                                     }
                                 }

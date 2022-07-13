@@ -22,23 +22,22 @@ fun BottomNavGraph(
         navController = navController,
         startDestination = BottomBarScreen.Home.route
     ) {
+
+
         composable(route = BottomBarScreen.Home.route) {
             HomeScreen(
-                navController = navController,
+                navHostControllers = navController,
                 localContext = localContext,
                 viewModel = viewModel,
                 consoleEventHandler = viewModel::consoleEventHandler
             )
         }
         composable(route = BottomBarScreen.BillPayment.route) {
-            BillPaymentScreen(
-
-            )
+            BillPaymentScreen()
         }
         composable(route = BottomBarScreen.Transaction.route) {
-            TransactionScreen(
-
-            )
+            TransactionScreen()
         }
     }
 }
+

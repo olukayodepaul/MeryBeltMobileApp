@@ -5,6 +5,8 @@ import com.example.merybeltmobileapp.provider.preference.pref_provider_data.User
 import com.example.merybeltmobileapp.provider.preference.pref_provider_domain.MerryBeltPrefRepository
 import com.example.merybeltmobileapp.provider.room.room_provider_domain.MerryBeltRoomDao
 import com.example.merybeltmobileapp.ui.console.home_data.console_dto.Banks
+import com.example.merybeltmobileapp.ui.console.home_data.console_dto.NetworkMgtReq
+import com.example.merybeltmobileapp.ui.console.home_data.console_dto.NetworkMgtRes
 import com.example.merybeltmobileapp.ui.login.login_data.login_dto.LoginCredential
 import com.example.merybeltmobileapp.ui.login.login_data.login_dto.LoginResponse
 import retrofit2.Response
@@ -69,6 +71,10 @@ class MerryBeltApiRepositoryImpl(
 
     override suspend fun getBankList(terminalId: String, sessionId: String): Response<Banks> {
         return merryBeltApi.getBanks(terminalId, sessionId)
+    }
+
+    override suspend fun networkMgt(data: NetworkMgtReq): Response<NetworkMgtRes> {
+        return merryBeltApi.networkMgt(data)
     }
 
 }

@@ -42,7 +42,7 @@ object ApiModules {
         }
 
         return Retrofit.Builder()
-            .baseUrl("http://mobiletraderapi.com:9100/")
+            .baseUrl("https://service-dev.trylux.africa")
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .client(okHttpClientBuilder.build())
             .build()

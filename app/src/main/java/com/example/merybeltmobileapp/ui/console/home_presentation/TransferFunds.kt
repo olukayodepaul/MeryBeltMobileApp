@@ -13,11 +13,8 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.R
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -29,9 +26,7 @@ import com.example.merybeltmobileapp.assets.Fonts
 import com.example.merybeltmobileapp.theme.*
 import com.example.merybeltmobileapp.ui.console.home_data.ConsoleEvent
 import com.example.merybeltmobileapp.ui.console.home_data.ConsoleState
-import com.example.merybeltmobileapp.ui.console.home_presentation.console_component.BankList
-import com.example.merybeltmobileapp.ui.console.home_presentation.console_component.Buttons
-import com.example.merybeltmobileapp.ui.console.home_presentation.console_component.OutlinedTextFields
+import com.example.merybeltmobileapp.ui.console.home_presentation.console_component.*
 
 
 @Composable
@@ -40,7 +35,7 @@ fun TransferFunds(
     localContext: Context,
     consoleState: ConsoleState,
     consoleEventHandler: (ConsoleEvent) -> Unit
-){
+) {
     MaterialTheme {
         Scaffold(
             topBar = {
@@ -56,7 +51,7 @@ fun TransferFunds(
                     },
                     navigationIcon = {
                         IconButton(onClick = {}) {
-                            Icon(Icons.Filled.ArrowBack,"backIcon", tint = White)
+                            Icon(Icons.Filled.ArrowBack, "backIcon", tint = White)
                         }
                     },
                     backgroundColor = MChild,
@@ -71,11 +66,12 @@ fun TransferFunds(
                         .fillMaxWidth(),
                 ) {
 
-                    Column(modifier = Modifier
-                        .height(100.dp)
-                        .fillMaxWidth()
-                        .background(color = MChild)
-                        .padding(20.dp),
+                    Column(
+                        modifier = Modifier
+                            .height(100.dp)
+                            .fillMaxWidth()
+                            .background(color = MChild)
+                            .padding(20.dp),
                         verticalArrangement = Arrangement.Center
 
                     ) {
@@ -103,9 +99,10 @@ fun TransferFunds(
                         )
                     }
 
-                    Column(modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth(),
+                    Column(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .fillMaxWidth(),
                     ) {
                         Column(
                             modifier = Modifier
@@ -115,24 +112,28 @@ fun TransferFunds(
                                 .background(White)
                                 .padding(start = 20.dp, end = 20.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
-                        ){
-                            Row(Modifier.height(70.dp)){
-                                Box(modifier = Modifier
-                                    .width(55.dp)
-                                    .height(64.dp)
-                                    .padding(top = 8.dp, end = 5.dp)
-                                    .border(width = 1.dp, color = MaterialBg)
-                                    .clip(shape = RoundedCornerShape(10.dp))
-                                    .border(
-                                        BorderStroke(
-                                            width = 1.dp, color = Borderline
-                                        )
-                                    ),
+                        ) {
+
+                            Spacer(modifier = Modifier.padding(top = 40.dp))
+
+                            Row(Modifier.height(70.dp)) {
+                                Box(
+                                    modifier = Modifier
+                                        .width(55.dp)
+                                        .height(64.dp)
+                                        .padding(top = 8.dp, end = 5.dp)
+                                        .border(width = 1.dp, color = MaterialBg)
+                                        .clip(shape = RoundedCornerShape(10.dp))
+                                        .border(
+                                            BorderStroke(
+                                                width = 1.dp, color = Borderline
+                                            )
+                                        ),
                                     contentAlignment = Alignment.Center
 
-                                ){
+                                ) {
 
-                                    if(consoleState.bankLogo.isEmpty()){
+                                    if (consoleState.bankLogo.isEmpty()) {
                                         Icon(
                                             modifier = Modifier
                                                 .fillMaxWidth()
@@ -141,11 +142,12 @@ fun TransferFunds(
                                             painter = painterResource(id = cusIcon(1)),
                                             contentDescription = "Logo"
                                         )
-                                    }else{
-                                        val leadingIcon = rememberImagePainter(data = consoleState.bankLogo,
-                                            builder =  {
-                                            }
-                                        )
+                                    } else {
+                                        val leadingIcon =
+                                            rememberImagePainter(data = consoleState.bankLogo,
+                                                builder = {
+                                                }
+                                            )
                                         Image(
                                             painter = leadingIcon,
                                             contentDescription = "logo",
@@ -155,41 +157,76 @@ fun TransferFunds(
                                                 .padding(7.dp),
                                         )
                                         val painterState = leadingIcon.state
-                                        if(painterState is ImagePainter.State.Loading){
+                                        if (painterState is ImagePainter.State.Loading) {
                                             CircularProgressIndicator(
                                                 color = MChild
                                             )
                                         }
                                     }
                                 }
+
                                 BankList(
                                     localContext = localContext,
                                     consoleState = consoleState,
                                     consoleEventHandler = consoleEventHandler
                                 )
-
                             }
 
-                            OutlinedTextFields(
-                                label = "Account Number"
+                            OutlinedTextFieldsNumber(
+                                label = "Account Number",
+                                value = consoleState.accNumber,
+                                onValueChange = {accNumber->
+                                    consoleEventHandler(
+                                        ConsoleEvent.onAccountNumber(accNumber)
+                                    )
+                                },
+                                enabled = true,
                             )
 
-                            OutlinedTextFields(
-                                label = "Account Name"
+                            Spacer(modifier = Modifier.padding(bottom = 5.dp))
+
+                            OutlinedTextFieldsText(
+                                label = "Account Name",
+                                value = consoleState.accName,
+                                onValueChange = {accName->
+                                    consoleEventHandler(
+                                        ConsoleEvent.onAccountName(accName)
+                                    )
+                                },
+                                enabled = consoleState.enableWidget
                             )
 
-                            OutlinedTextFields(
-                                label = "Account Amount"
+                            Spacer(modifier = Modifier.padding(bottom = 5.dp))
+
+                            OutlinedTextFieldsNumber(
+                                label = "Amount",
+                                value = consoleState.accAmount,
+                                onValueChange = {accAmount->
+                                    consoleEventHandler(
+                                        ConsoleEvent.onAmount(accAmount)
+                                    )
+                                },
+                                enabled = consoleState.enableWidget
                             )
 
-                            OutlinedTextFields(
-                                label = "Account Remark"
+                            Spacer(modifier = Modifier.padding(bottom = 5.dp))
+
+                            OutlinedTextFieldsText(
+                                label = "Remark",
+                                value = consoleState.accRemark,
+                                onValueChange = {accRemark->
+                                   consoleEventHandler(
+                                       ConsoleEvent.onRemark(accRemark)
+                                   )
+                                },
+                                enabled = consoleState.enableWidget
                             )
 
+                            Spacer(modifier = Modifier.padding(bottom = 20.dp))
                             Buttons(
-                                label = "Next"
+                                label = "Next",
+                                enabled = consoleState.enableWidget
                             )
-
                         }
                     }
                 }

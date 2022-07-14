@@ -29,6 +29,7 @@ fun BankList(
     consoleState: ConsoleState,
     consoleEventHandler: (ConsoleEvent) -> Unit
 ) {
+
     val bColor = Borderline
 
     Box {
@@ -37,7 +38,7 @@ fun BankList(
             onValueChange = { },
             label = {
                 Text(
-                    text = "Label",
+                    text = "Banks",
                     style = TextStyle(
                         fontFamily = Fonts.Montserrat,
                         color = Blues,

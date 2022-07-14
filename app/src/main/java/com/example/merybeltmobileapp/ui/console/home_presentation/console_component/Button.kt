@@ -14,12 +14,15 @@ import com.example.merybeltmobileapp.theme.White
 
 @Composable
 fun Buttons(
-    label: String
+    label: String,
+    enabled: Boolean = false,
+
 ) {
     Button(
         onClick = {
 
         },
+        enabled = enabled,
         modifier = Modifier
             .fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(

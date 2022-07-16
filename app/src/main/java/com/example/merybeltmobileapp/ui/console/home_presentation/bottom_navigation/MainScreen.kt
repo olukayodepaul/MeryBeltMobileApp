@@ -13,12 +13,21 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.merybeltmobileapp.theme.Purple500
 import com.example.merybeltmobileapp.theme.White
+import com.example.merybeltmobileapp.ui.console.home_data.ConsoleEvent
+import com.example.merybeltmobileapp.ui.console.home_data.ConsoleState
+import com.example.merybeltmobileapp.ui.console.home_presentation.ConsoleViewModel
+import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
+import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
+import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
 
 
 @Composable
 fun HomeMainScreen(
     navController: NavHostController,
+    viewModel: ConsoleViewModel,
     localContext: Context,
+    consoleState: ConsoleState,
+    consoleEvent: (ConsoleEvent) -> Unit,
 ) {
     val navController = rememberNavController()
     Scaffold(
@@ -26,7 +35,10 @@ fun HomeMainScreen(
     ) {
         BottomNavGraph(
             navController = navController,
-            localContext =  localContext
+            viewModel = viewModel,
+            localContext = localContext,
+            consoleState = consoleState,
+            consoleEvent = consoleEvent
         )
     }
 }

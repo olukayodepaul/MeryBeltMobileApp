@@ -19,16 +19,16 @@ import androidx.navigation.NavHostController
 import com.example.merybeltmobileapp.R
 import com.example.merybeltmobileapp.assets.Fonts
 import com.example.merybeltmobileapp.theme.Blues
+import com.example.merybeltmobileapp.ui.console.home_presentation.bottom_navigation.DetailsScreen
 import com.example.merybeltmobileapp.ui.console.home_presentation.screen.changeBgColor
 import com.example.merybeltmobileapp.ui.console.home_presentation.screen.getNameInitialsBg
-import com.example.merybeltmobileapp.ui.navigation.NaHost
 
 @Composable
 fun appIntents(
     navHostControllers: NavHostController,
     imageSwitchers: Int = 0,
     routerLinkName: String = "",
-    route: String = ""
+    route: Int = 0
 ){
     Card(
         elevation = 3.dp,
@@ -36,7 +36,20 @@ fun appIntents(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                //navHostControllers.navigate(NaHost.CreditScreen.route)
+               when(route) {
+                   1->{
+                       navHostControllers.navigate(DetailsScreen.Transfer.route)
+                   }
+                   2->{
+                       navHostControllers.navigate(DetailsScreen.Withdraw.route)
+                   }
+                   3->{
+                       navHostControllers.navigate(DetailsScreen.CreditAcc.route)
+                   }
+                   4->{
+                       navHostControllers.navigate(DetailsScreen.PayBill.route)
+                   }
+               }
             }
     ) {
         Row(

@@ -22,6 +22,7 @@ import com.example.merybeltmobileapp.assets.Fonts.RobotoBold
 import com.example.merybeltmobileapp.theme.MChild
 import com.example.merybeltmobileapp.theme.White
 import com.example.merybeltmobileapp.ui.console.home_data.ConsoleEvent
+import com.example.merybeltmobileapp.ui.console.home_data.ConsoleState
 import com.example.merybeltmobileapp.ui.console.home_presentation.ConsoleViewModel
 import com.example.merybeltmobileapp.ui.console.home_presentation.console_component.appIntents
 
@@ -31,6 +32,7 @@ fun HomeScreen(
     navHostControllers: NavHostController,
     localContext: Context,
     viewModel: ConsoleViewModel,
+    consoleState: ConsoleState,
     consoleEventHandler: (ConsoleEvent)->Unit
 ) {
 
@@ -107,7 +109,7 @@ fun HomeScreen(
                         navHostControllers= navHostControllers,
                         imageSwitchers = 0,
                         routerLinkName = "Credit Account",
-                        route = "credit_route"
+                        route = 3
                     )
 
                     Spacer(modifier = Modifier.padding(bottom = 15.dp))
@@ -116,7 +118,7 @@ fun HomeScreen(
                         navHostControllers= navHostControllers,
                         imageSwitchers = 1,
                         routerLinkName = "Withdraw",
-                        route = "withdraw_route"
+                        route = 2
                     )
 
                     Spacer(modifier = Modifier.padding(bottom = 15.dp))
@@ -125,7 +127,7 @@ fun HomeScreen(
                         navHostControllers= navHostControllers,
                         imageSwitchers = 2,
                         routerLinkName = "Transfer",
-                        route = "transfer_route"
+                        route = 1
                     )
 
                     Spacer(modifier = Modifier.padding(bottom = 15.dp))
@@ -134,7 +136,7 @@ fun HomeScreen(
                         navHostControllers= navHostControllers,
                         imageSwitchers = 3,
                         routerLinkName = "Bill payment",
-                        route = "bill_route"
+                        route = 4
                     )
                 }
             }

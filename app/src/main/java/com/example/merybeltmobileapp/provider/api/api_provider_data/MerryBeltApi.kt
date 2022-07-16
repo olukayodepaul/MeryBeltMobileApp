@@ -20,13 +20,13 @@ interface MerryBeltApi {
     suspend fun getBanks(
         @Header("terminalId")  terminalId: String,
         @Header("sessionId")  sessionId: String,
-    ): Response<Banks>
+    ): Response<Banks> //bank List
 
     @POST("/resd/account-validation")
     suspend fun customerValidation(
         @Header("terminalId")  terminalId: String,
         @Header("sessionId")  sessionId: String,
-        @Body data: CustomerValidation
+        @Body data: CustomerValidation //cust validation
     )
 
     @POST("/resd/transaction")
@@ -34,11 +34,33 @@ interface MerryBeltApi {
         @Header("terminalId")  terminalId: String,
         @Header("sessionId")  sessionId: String,
         @Body data: TransferFundReq
-    )
+    ): Response<TransferFundRes> //Transfer fun
 
     @POST("/resd/network-mgt")
     suspend fun networkMgt(
         @Body data: NetworkMgtReq
-    ): Response<NetworkMgtRes>
+    ): Response<NetworkMgtRes> //Network
+
+    @POST("/resd/transaction")
+    suspend fun airTime(
+        @Header("terminalId")  terminalId: String,
+        @Header("sessionId")  sessionId: String,
+        @Body data: AirtimeReq
+    ): Response<AirtimeBodyData> //Airtime
+
+    @POST("/resd/transaction")
+    suspend fun cableTv(
+        @Header("terminalId")  terminalId: String,
+        @Header("sessionId")  sessionId: String,
+        @Body data: CableTvReq
+    ): Response<CableTvBodyData> //Cable Tv
+
+    @POST("/resd/transaction")
+    suspend fun getPhcn(
+        @Header("terminalId")  terminalId: String,
+        @Header("sessionId")  sessionId: String,
+        @Body data: PhcnReq
+    ): Response<PhcnBodyData> //Phcn
+
 
 }

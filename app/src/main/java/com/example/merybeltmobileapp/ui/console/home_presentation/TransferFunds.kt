@@ -33,9 +33,13 @@ import com.example.merybeltmobileapp.ui.console.home_presentation.console_compon
 fun TransferFunds(
     navController: NavHostController,
     localContext: Context,
+    viewModel: ConsoleViewModel,
     consoleState: ConsoleState,
-    consoleEventHandler: (ConsoleEvent) -> Unit
+    consoleEvent: (ConsoleEvent) -> Unit,
 ) {
+
+    val consoleEventHandler = viewModel::consoleEventHandler
+
     MaterialTheme {
         Scaffold(
             topBar = {

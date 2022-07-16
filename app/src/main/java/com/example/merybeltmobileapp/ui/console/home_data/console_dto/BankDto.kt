@@ -80,7 +80,7 @@ data class TransferFundReq(
     @SerializedName("bankCode") //from CustValid(3) bank code
     @Expose
     val bankCode: String = "",
-    @SerializedName("type")
+    @SerializedName("type") //SAVINGS DEFAULT CURRENT CREDIT
     @Expose
     val type: String = "",
 )
@@ -133,6 +133,86 @@ data class NetworkMgtRes(
         val merchantId: String = "",
     )
 }
+
+
+//AitTime Credit (8)
+data class AirtimeReq(
+    val amount: Double? = 0.0,
+    val pin: String? = null,
+    val stan: String? = null,
+    val rrn: String? = null,
+    val phoneNumber: String? = null,
+    val airtimeCategory: String? = null, //AIRTEL, MTN, GLO, ETISALAT
+    val type: String? = null, //"AIRTIME"
+)
+
+data class AirtimeBodyData(
+    @SerializedName("description")
+    @Expose
+    val description: String? = "",
+    @SerializedName("responseCode")
+    @Expose
+    val responseCode: String = "",
+)
+
+
+//Cable tV(9):
+data class CableTvReq(
+    val amount: Double? = 0.0,
+    val pin: String? = null,
+    val stan: String? = null,
+    val rrn: String? = null,
+    val phoneNumber: String? = null,
+    val productId: String? = null,
+    val cableTVNumber: String? = null, //DSTV GOTV STARTIMES
+    val type: String? = null, //"CABLE_TV"
+)
+
+data class CableTvBodyData(
+    @SerializedName("description")
+    @Expose
+    val description: String? = "",
+    @SerializedName("responseCode")
+    @Expose
+    val responseCode: String = "",
+)
+
+//Power(10):
+data class PhcnReq(
+    val amount: Double? = 0.0,
+    val pin: String? = null,
+    val stan: String? = null,
+    val rrn: String? = null,
+    val phoneNumber: String? = null,
+    val meterNumber: String? = null,
+    val phcnCategory: String? = null,
+    val phcnPurchaseCategory: String? = null, //AEDC IKEJA
+    val type: String? = null, //"PHCN"
+)
+
+data class PhcnBodyData(
+    @SerializedName("description")
+    @Expose
+    val description: String? = "",
+    @SerializedName("responseCode")
+    @Expose
+    val responseCode: String = "",
+)
+
+//Purchase Data(11):
+data class DataPurchase(
+    val amount: Double? = 0.0,
+    val pin: String? = null,
+    val stan: String? = null,
+    val rrn: String? = null,
+    val phoneNumber: String? = null,
+    val meterNumber: String? = null,
+    val phcnCategory: String? = null,
+    val phcnPurchaseCategory: String? = null, //AEDC IKEJA
+    val type: String? = null, //"PHCN"
+)
+
+
 
 
 

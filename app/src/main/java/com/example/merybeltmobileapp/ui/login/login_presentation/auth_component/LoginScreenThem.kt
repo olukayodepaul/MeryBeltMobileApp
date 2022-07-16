@@ -11,15 +11,16 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.merybeltmobileapp.theme.White
+import com.example.merybeltmobileapp.ui.AuthScreen
+import com.example.merybeltmobileapp.ui.graph.Graph
 import com.example.merybeltmobileapp.ui.login.login_data.ApiState
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationEvent
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
 import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
-import com.example.merybeltmobileapp.ui.navigation.NaHost
 
 
 @Composable
-fun LoginScreenThem(
+fun LoginScreenTheme(
     navHostControllers: NavHostController,
     viewModel: AuthenticationViewModel = hiltViewModel(),
     localContext: Context,
@@ -70,7 +71,8 @@ fun LoginScreenThem(
                 AuthenticationButtons(
                     title = "Login",
                     viewModel = viewModel,
-                    uiState = authenticationState
+                    uiState = authenticationState,
+                    navHostControllers = navHostControllers
                 )
                 Spacer(modifier = Modifier.padding(bottom = 15.dp))
                 CircularPropagations(
@@ -98,11 +100,10 @@ fun LoginScreenThem(
                         when (event) {
                             is ApiState.Success -> {
                                 if(event.status==200) {
-                                    navHostControllers.navigate(route = NaHost.CreditScreen.route)
+                                    navHostControllers.navigate(route = Graph.HOME)
                                     {
-                                        popUpTo(NaHost.MainScreen.route) {
+                                        popUpTo(route = AuthScreen.Login.route) {
                                             inclusive = true
-                                            //NaHost.CreditScreen.route
                                         }
                                     }
                                 }

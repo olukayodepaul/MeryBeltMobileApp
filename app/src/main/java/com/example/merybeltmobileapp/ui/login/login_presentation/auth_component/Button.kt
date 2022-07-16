@@ -11,9 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.merybeltmobileapp.assets.Fonts
 import com.example.merybeltmobileapp.theme.MChild
 import com.example.merybeltmobileapp.theme.White
+import com.example.merybeltmobileapp.ui.AuthScreen
+import com.example.merybeltmobileapp.ui.graph.Graph
 import com.example.merybeltmobileapp.ui.login.login_data.AuthenticationState
 import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationViewModel
 
@@ -22,11 +25,18 @@ import com.example.merybeltmobileapp.ui.login.login_presentation.AuthenticationV
 fun AuthenticationButtons(
     title:String = "",
     viewModel: AuthenticationViewModel,
-    uiState: AuthenticationState
+    uiState: AuthenticationState,
+    navHostControllers: NavHostController,
 ) {
     Button(
         onClick = {
-            viewModel.AuthApiRequest(uiState.username, uiState.password)
+            navHostControllers.navigate(route = Graph.HOME)
+            {
+                popUpTo(route = AuthScreen.Login.route) {
+                    inclusive = true
+                }
+            }
+            //viewModel.AuthApiRequest(uiState.username, uiState.password)
         },
         modifier = Modifier
             .fillMaxWidth()
